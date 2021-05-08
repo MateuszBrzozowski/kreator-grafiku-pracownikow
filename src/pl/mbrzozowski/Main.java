@@ -16,9 +16,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
         primaryStage.setTitle("Generator Grafiku Pracowniczego v1.0");
         Scene scene = new Scene(root);
-        scene.getStylesheets();
         primaryStage.setScene(scene);
-
         primaryStage.show();
 
     }

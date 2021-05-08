@@ -1,4 +1,4 @@
-package pl.mbrzozowski;
+package pl.mbrzozowski.shop;
 
 public class Employee {
     private int id;
@@ -19,6 +19,42 @@ public class Employee {
         this.name = name;
         this.secendName = secendName;
         this.sizeTime = sizeTime;
+        this.position = position;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSecendName() {
+        return secendName;
+    }
+
+    public void setSecendName(String secendName) {
+        this.secendName = secendName;
+    }
+
+    public int getSizeTime() {
+        return sizeTime;
+    }
+
+    public void setSizeTime(int sizeTime) {
+        this.sizeTime = sizeTime;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
         this.position = position;
     }
 
