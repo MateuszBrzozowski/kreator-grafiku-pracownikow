@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="338.0" prefWidth="649.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mbrzozowski.MainWindowController">
+<AnchorPane prefHeight="338.0" prefWidth="649.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mbrzozowski.windows.MainWindowController">
    <children>
       <VBox AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
@@ -33,7 +33,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" spacing="3.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="DODAJ" textAlignment="CENTER">
+                  <Button fx:id="employeeAdd" mnemonicParsing="false" onMouseClicked="#employeeAdd_clicked" prefHeight="55.0" prefWidth="110.0" text="DODAJ" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -41,17 +41,17 @@
                         <Insets left="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="USUŃ" textAlignment="CENTER">
+                  <Button fx:id="employeeRemove" mnemonicParsing="false" onMouseClicked="#employeeRemove_clicked" prefHeight="55.0" prefWidth="110.0" text="USUŃ" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="EDYTUJ" textAlignment="CENTER">
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="110.0" text="EDYTUJ" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="WYŚWIETL" textAlignment="CENTER">
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="110.0" text="WYŚWIETL" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -83,17 +83,17 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" spacing="5.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="GENERUJ" textAlignment="CENTER">
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="110.0" text="GENERUJ" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="WYŚWIETL" textAlignment="CENTER">
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="110.0" text="WYŚWIETL" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="118.0" text="WYŚWIETL&#10;DLA OSOBY" textAlignment="CENTER">
+                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="110.0" text="WYŚWIETL&#10;DLA OSOBY" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>

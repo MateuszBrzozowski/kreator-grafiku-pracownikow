@@ -12,7 +12,7 @@ public class HelperWithFiles {
     static Scanner scanner;
 
     public static void main(String[] args) {
-        convertFile();
+//        convertFile();
     }
 
     public static void convertFile(){
@@ -31,7 +31,7 @@ public class HelperWithFiles {
         int i=1;
         while (scanner.hasNextLine()){
             String line=scanner.nextLine();
-            line=i+";"+line.replace(" ",";")+";1;Sprzedawca\n";
+            line=i+";"+line.replace(" ",";")+";1;Sprzedawca;\n";
             try {
                 fileWriter.write(line);
             } catch (IOException e) {
