@@ -4,7 +4,7 @@ public class Employee {
     private int id;
     private String name;
     private String secendName;
-    private int sizeTime;
+    private int sizeTime; // 1 - pelny etat; 2 - polowa etatu itd.
     private String position;
 
     /**

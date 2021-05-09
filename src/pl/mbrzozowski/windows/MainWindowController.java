@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.junit.FixMethodOrder;
 import pl.mbrzozowski.shop.Shop;
 
 import javafx.fxml.FXML;
@@ -16,7 +17,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class MainWindowController {
-    Shop shop;
+    public static Shop shop;
+    public static Stage stageAddEmployee;
 
 
 
@@ -34,18 +36,23 @@ public class MainWindowController {
     @FXML
     void employeeAdd_clicked(MouseEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("addEmployee.fxml"));
-        Stage stage = new Stage();
-        stage.setTitle("Dodaj pracownika");
+        stageAddEmployee = new Stage();
+        stageAddEmployee.setTitle("Dodaj pracownika");
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
+        stageAddEmployee.setScene(scene);
+        stageAddEmployee.initModality(Modality.APPLICATION_MODAL);
+        stageAddEmployee.show();
 
     }
 
     @FXML
     void employeeRemove_clicked(MouseEvent event) {
 
+    }
+
+    @FXML
+    void buttonWyswietlClicked(MouseEvent event){
+        shop.showAllEmployee();
     }
 
     /**

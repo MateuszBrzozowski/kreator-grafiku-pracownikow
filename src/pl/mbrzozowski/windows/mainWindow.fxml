@@ -51,7 +51,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="110.0" text="WYŚWIETL" textAlignment="CENTER">
+                  <Button fx:id="buttonWyswietl" mnemonicParsing="false" onMouseClicked="#buttonWyswietlClicked" prefHeight="55.0" prefWidth="110.0" text="WYŚWIETL" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
