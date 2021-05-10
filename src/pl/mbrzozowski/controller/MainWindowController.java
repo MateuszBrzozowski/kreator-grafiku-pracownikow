@@ -1,4 +1,4 @@
-package pl.mbrzozowski.windows;
+package pl.mbrzozowski.controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -6,11 +6,12 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.junit.FixMethodOrder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.mbrzozowski.shop.Shop;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,7 +20,8 @@ import java.util.Scanner;
 public class MainWindowController {
     public static Shop shop;
     public static Stage stageAddEmployee;
-
+    protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
+    private static Stage stageShowEmployee;
 
 
     public void initialize(){
@@ -28,14 +30,9 @@ public class MainWindowController {
     }
 
     @FXML
-    private Button employeeAdd;
-
-    @FXML
-    private Button employeeRemove;
-
-    @FXML
     void employeeAdd_clicked(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("addEmployee.fxml"));
+        //TODO sciezki do plikow fxml zrobic prawidlowe po refactor
+        Parent root = FXMLLoader.load(getClass().getResource("\\fxml\\addEmployee.fxml"));
         stageAddEmployee = new Stage();
         stageAddEmployee.setTitle("Dodaj pracownika");
         Scene scene = new Scene(root);
@@ -51,8 +48,17 @@ public class MainWindowController {
     }
 
     @FXML
-    void buttonWyswietlClicked(MouseEvent event){
-        shop.showAllEmployee();
+    void buttonWyswietlClicked(MouseEvent event) throws IOException {
+
+        //TODO to co wyzej
+        Parent root = FXMLLoader.load(getClass().getResource("showEmployee.fxml"));
+        stageShowEmployee = new Stage();
+        stageShowEmployee.setTitle("Pokaż/Edytuj/Usuń Pracownika");
+        Scene scene = new Scene(root);
+        stageShowEmployee.setScene(scene);
+        stageShowEmployee.initModality(Modality.APPLICATION_MODAL);
+        stageShowEmployee.show();
+//        shop.showAllEmployee();
     }
 
     /**
@@ -91,8 +97,9 @@ public class MainWindowController {
             String secName = data[2];
             int sizeTime = Integer.parseInt(data[3]);
             String position = data[4];
-            shop.addEmployee(id,name,secName,sizeTime,position);
-        }
+            shop.addEmployeeFromFileInitApp(id,name,secName,sizeTime,position);
 
+        }
+        logger.info("Dodano pracowników z pliku [{}]",path);
     }
 }

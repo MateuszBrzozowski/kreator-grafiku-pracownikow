@@ -1,4 +1,4 @@
-package pl.mbrzozowski.windows;
+package pl.mbrzozowski.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,8 +7,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.mbrzozowski.controller.MainWindowController;
 
-public class addEmployeeController {
+public class AddEmployeeController {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
     private static int id;
@@ -27,10 +28,14 @@ public class addEmployeeController {
     private TextField textFieldSecendName;
 
     @FXML
-    private ChoiceBox choiceBoxSizeTime;
+    private ChoiceBox<String> choiceBoxSizeTime;
+
+    private String[] sizeTimeData = {"Pełny etat","1/2 etatu","1/3 etatu","1/4 etatu"};
 
     @FXML
-    private ChoiceBox choiceBoxPosition;
+    private ChoiceBox<String> choiceBoxPosition;
+
+    private String[] positionData = {"Dyrektor","Manager","Sprzedawca"};
 
     @FXML
     private Button buttonDodaj;
@@ -38,35 +43,69 @@ public class addEmployeeController {
     @FXML
     private Button buttonAnuluj;
 
+    public void initialize(){
+        id=setNewId();
+        textFieldId.setText(String.valueOf(id));
+        name=null;
+        secondName=null;
+        position = null;
+        sizeTime=0;
+        logger.info("Okno Dodaj pracownika zostało otwarte.");
+        choiceBoxSizeTime.setValue("Wysokość etatu");
+        choiceBoxSizeTime.getItems().addAll(sizeTimeData);
+        choiceBoxPosition.setValue("Stanowisko");
+        choiceBoxPosition.getItems().addAll(positionData);
+
+        buttonDodaj.setDisable(true);
+        textFieldId.setDisable(true);
+    }
+
     @FXML
     void buttonAnulujClicked(MouseEvent event) {
+        logger.info("Okno Dodaj pracownika zostało zamknięte.");
         MainWindowController.stageAddEmployee.close();
 
     }
 
     @FXML
     void buttonDodajClicked(MouseEvent event) {
-        boolean[] acceptData = new boolean[6];
+        boolean[] acceptData = new boolean[7];
         acceptData[0] = validationId(textFieldId.getText());
         acceptData[1] = validationString(textFieldName,textFieldName.getText());
         acceptData[2] = validationString(textFieldSecendName,textFieldSecendName.getText());
         acceptData[3] = validationSizeTime(choiceBoxSizeTime.getValue().toString());
         acceptData[4] = validationPosition(choiceBoxPosition.getValue().toString());
-        acceptData[5] = true;
-        for (int i = 0; i < 5; i++) {
+        acceptData[5] = MainWindowController.shop.isPossibleAddEmployeeToShop(id); // czy istnieje już pracownik o takim samym id
+        acceptData[6] = true;
+        for (int i = 0; i < 6; i++) {
             if (acceptData[i]==false){
-                acceptData[5]=false;
+                acceptData[6]=false;
                 break;
             }
         }
 
-        //TODO Sprawdzić czy dodawany pracownik już nie istnieje o takim samym ID
-
-        if (acceptData[5]){
+        if (acceptData[6]){
             MainWindowController.shop.addEmployee(id,name,secondName,sizeTime,position);
             MainWindowController.stageAddEmployee.close();
+            logger.info("Dodano pracownika. Okno Dodaj pracownika zostało zamknięte");
+        }
+        else {
+            logger.error("Wprowadzono błędne dane. Dodanie pracownika nie możliwe.");
         }
 
+    }
+
+    @FXML
+    void checkValues(){
+        if(textFieldName.getText().isEmpty() || textFieldSecendName.getText().isEmpty() || textFieldId.getText().isEmpty()){
+            buttonDodaj.setDisable(true);
+        }else {
+            buttonDodaj.setDisable(false);
+        }
+    }
+
+    private int setNewId() {
+        return MainWindowController.shop.getMaxId()+1;
     }
 
     public boolean validationSizeTime(String value) {
@@ -143,21 +182,8 @@ public class addEmployeeController {
 
     }
 
-    public void initialize(){
-        logger.info("Okno Dodaj pracownika zostało otwarte.");
-        choiceBoxSizeTime.setValue("Wysokość etatu");
-        choiceBoxSizeTime.getItems().add("Pełny etat");
-        choiceBoxSizeTime.getItems().add("1/2 etatu");
-        choiceBoxSizeTime.getItems().add("1/3 etatu");
-        choiceBoxSizeTime.getItems().add("1/4 etatu");
 
-        choiceBoxPosition.setValue("Stanowisko");
-        choiceBoxPosition.getItems().add("Dyrektor");
-        choiceBoxPosition.getItems().add("Manager");
-        choiceBoxPosition.getItems().add("Sprzedawca");
 
-        buttonDodaj.setDefaultButton(true);
 
-    }
 
 }

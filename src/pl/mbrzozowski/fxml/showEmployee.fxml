@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mbrzozowski.controller.ShowEmployeeController">
+   <children>
+      <TableView fx:id="tableView" layoutX="141.0" layoutY="148.0" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <columns>
+          <TableColumn fx:id="tableViewID" prefWidth="50.0" text="ID" />
+          <TableColumn fx:id="tableViewImie" prefWidth="200.0" text="Imię" />
+            <TableColumn fx:id="tableViewNazwisko" prefWidth="200.0" text="Nazwisko" />
+            <TableColumn fx:id="tableViewWielkoscEtatu" prefWidth="150.0" text="Wielkość etatu" />
+            <TableColumn fx:id="tableViewStanowisko" minWidth="100.0" prefWidth="150.0" text="Stanowisko" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

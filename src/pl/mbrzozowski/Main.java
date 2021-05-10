@@ -1,4 +1,4 @@
-package pl.mbrzozowski.windows;
+package pl.mbrzozowski;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("\\fxml\\mainWindow.fxml"));
         primaryStage.setTitle("Generator Grafiku Pracowniczego v1.0");
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

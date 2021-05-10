@@ -1,11 +1,12 @@
-package pl.mbrzozowski.windows;
+package pl.mbrzozowski.fxml;
 
 import javafx.scene.control.TextField;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import pl.mbrzozowski.controller.AddEmployeeController;
 
 class addEmployeeControllerTest {
-    addEmployeeController addEmployeeController = new addEmployeeController();
+    AddEmployeeController addEmployeeController = new AddEmployeeController();
 
     @Test
     void validationName_OnlyString_True(){
