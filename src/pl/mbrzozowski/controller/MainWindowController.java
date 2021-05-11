@@ -8,6 +8,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.mbrzozowski.database.DBConnector;
 import pl.mbrzozowski.shop.Shop;
 
 import javafx.fxml.FXML;
@@ -15,6 +16,9 @@ import javafx.fxml.FXML;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class MainWindowController {
@@ -22,17 +26,19 @@ public class MainWindowController {
     public static Stage stageAddEmployee;
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
     private static Stage stageShowEmployee;
+    public static final String ADD_EMPLOYEE = "/fxml/addEmployee.fxml";
+    public static final String SHOW_EMPLOYEE = "/fxml/showEmployee.fxml";
+    private ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
 
 
     public void initialize(){
         shop = new Shop("Zara");
-        addEmployeeFromFile();
+        getAllEmployeFromDatabase();
     }
 
     @FXML
     void employeeAdd_clicked(MouseEvent event) throws IOException {
-        //TODO sciezki do plikow fxml zrobic prawidlowe po refactor
-        Parent root = FXMLLoader.load(getClass().getResource("\\fxml\\addEmployee.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(ADD_EMPLOYEE));
         stageAddEmployee = new Stage();
         stageAddEmployee.setTitle("Dodaj pracownika");
         Scene scene = new Scene(root);
@@ -49,22 +55,49 @@ public class MainWindowController {
 
     @FXML
     void buttonWyswietlClicked(MouseEvent event) throws IOException {
-
-        //TODO to co wyzej
-        Parent root = FXMLLoader.load(getClass().getResource("showEmployee.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(SHOW_EMPLOYEE));
         stageShowEmployee = new Stage();
-        stageShowEmployee.setTitle("Pokaż/Edytuj/Usuń Pracownika");
+        stageShowEmployee.setTitle(bundle.getString("title.application"));
         Scene scene = new Scene(root);
         stageShowEmployee.setScene(scene);
         stageShowEmployee.initModality(Modality.APPLICATION_MODAL);
         stageShowEmployee.show();
-//        shop.showAllEmployee();
+    }
+
+    /**
+     * Pobniera z bazy danych wszystkie rekordy i dodaje do listy w klasie Shop
+     */
+    private void getAllEmployeFromDatabase() {
+        String query = "SELECT * FROM `employee`";
+        DBConnector dbConnector = new DBConnector();
+        ResultSet resultSet = dbConnector.executeSelect(query);
+
+        while (true){
+            try {
+                if (!resultSet.next()) break;
+                else {
+                    int id = resultSet.getInt("ID");
+                    String name = resultSet.getString("name");
+                    String surname = resultSet.getString("surname");
+                    int sizeTime = resultSet.getInt("sizeTime");
+                    String position = resultSet.getString("position");
+                    shop.addEmployee(id,name,surname,sizeTime,position);
+
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+        }
+        logger.info("Zakończono dodawanie wszystkich pracowników z bazy danych");
+        shop.showAllEmployee();
     }
 
     /**
      * Dodaje testowych pracowników z pliku. Przy starcie programu żeby nie trzeba było dodawać
-     * za każdym razem.
+     * za każdym razem. Używane przed Bazą danych //TODO usunąć to. zbędne
      */
+    /*
     private void addEmployeeFromFile() {
         String path = "Z:\\PROJECTS_JAVA\\034_KreatorGrafikuPracownikowZara\\resources\\employee.txt";
         FileReader fileReader;
@@ -102,4 +135,8 @@ public class MainWindowController {
         }
         logger.info("Dodano pracowników z pliku [{}]",path);
     }
+
+     */
+
+
 }

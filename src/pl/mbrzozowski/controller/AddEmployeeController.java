@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.mbrzozowski.controller.MainWindowController;
 
 public class AddEmployeeController {
 

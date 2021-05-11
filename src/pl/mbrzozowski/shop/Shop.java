@@ -2,6 +2,7 @@ package pl.mbrzozowski.shop;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.mbrzozowski.database.DBConnector;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -30,17 +31,8 @@ public class Shop {
      */
     public void addEmployee(int id, String name, String secendName, int sizeTime, String position){
         if(isEmployeeAndGetIndex(id)==-1){
-            //TODO dodać do pliku pracownika.
             Employee employee = new Employee(id,name,secendName,sizeTime,position);
             employees.add(employee);
-            String employeeStringToFile = "\n"+id+";"+name+";"+secendName+";"+sizeTime+";"+position+";";
-            try {
-                FileWriter writer = new FileWriter(path,true);
-                writer.write(employeeStringToFile);
-                writer.close();
-            }catch (IOException e){
-                logger.error("Błąd podczas dodwania pracownika do bazy danych.");
-            }
             logger.info("Pracownik {} {} {} został dodany",id,name,secendName);
         }else {
             logger.error("Pracownik o id {} już istnieje.", id);
@@ -48,20 +40,6 @@ public class Shop {
 
     }
 
-    /**
-     * Dodawnie pracówników podczas otwierania aplikacji. Nie możemy dopisać do pliku.
-     * Wczytujemy tylko plik i tworzymy liste pracowników. INIT aplki
-     * Metoda tymczasowa
-     * @param id pracownika
-     * @param name pracownika
-     * @param secendName pracownika
-     * @param sizeTime - wymiar etatu; 1- pelny etat, 2 - pol etatu, 3 - 1/3 etatu, 4 - 1/4 etatu
-     * @param position - stanowisko zajmowane przez pracownika
-     */
-    public void addEmployeeFromFileInitApp(int id, String name, String secendName, int sizeTime, String position){
-        Employee employee = new Employee(id,name,secendName,sizeTime,position);
-        employees.add(employee);
-    }
 
     public boolean isPossibleAddEmployeeToShop(int id){
         for (Employee employee : employees) {
@@ -106,6 +84,10 @@ public class Shop {
             employees.remove(indexEmployee);
             logger.info("Pracownik o ID ["+ id +"] został poprawnie usunięty z listy pracowników.");
         }
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
     public void showAllEmployee(){
