@@ -41,43 +41,4 @@ class addEmployeeControllerTest {
 
     }
 
-    @Test
-    void validationId_OnlyInteger_True(){
-        //given
-        String text = "531";
-        //when then
-        Assertions.assertTrue(addEmployeeController.validationId(text));
-    }
-
-    @Test
-    void validationId_IntWithString_False(){
-        //given
-        String text = "1234M";
-        //when then
-        Assertions.assertFalse(addEmployeeController.validationId(text));
-    }
-
-    @Test
-    void validationPosition_StringStanowisko_False() {
-        //given
-        String text = "Stanowisko";
-        //when then
-        Assertions.assertFalse(addEmployeeController.validationPosition(text));
-    }
-
-    @Test
-    void validationPosition_StringStanowiskoWith_True() {
-        //given
-        String text = "StanowiskoDyrektor";
-        //when then
-        Assertions.assertTrue(addEmployeeController.validationPosition(text));
-    }
-
-    @Test
-    void validationPosition_StringDyrektor_True() {
-        //given
-        String text = "Dyrektor";
-        //when then
-        Assertions.assertTrue(addEmployeeController.validationPosition(text));
-    }
 }

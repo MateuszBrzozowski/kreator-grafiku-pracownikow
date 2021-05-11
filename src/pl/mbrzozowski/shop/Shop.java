@@ -40,17 +40,6 @@ public class Shop {
 
     }
 
-
-    public boolean isPossibleAddEmployeeToShop(int id){
-        for (Employee employee : employees) {
-            if (employee.getId()==id){
-                logger.error("Podane ID już istnieje.");
-                return false;
-            }
-        }
-        return true;
-    }
-
     public int isEmployeeAndGetIndex(int id){
         int i=0;
         for (Employee employee:employees){
@@ -62,15 +51,10 @@ public class Shop {
         return -1;
     }
 
-    public int getMaxId(){
-        int result = -1;
-        for (Employee employee: employees) {
-            if(employee.getId()>result){
-                result=employee.getId();
-            }
-        }
-        return result;
+    public void clearEmployees(){
+        employees.clear();
     }
+
 
     /**
      * Usuwa pracownika ze sklepu

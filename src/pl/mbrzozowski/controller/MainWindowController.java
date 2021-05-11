@@ -22,52 +22,45 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class MainWindowController {
-    public static Shop shop;
-    public static Stage stageAddEmployee;
+    private static Shop shop;
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
     private static Stage stageShowEmployee;
-    public static final String ADD_EMPLOYEE = "/fxml/addEmployee.fxml";
-    public static final String SHOW_EMPLOYEE = "/fxml/showEmployee.fxml";
+    private static final String SHOW_EMPLOYEE = "/fxml/showEmployee.fxml";
     private ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
 
 
+    @FXML
     public void initialize(){
         shop = new Shop("Zara");
         getAllEmployeFromDatabase();
-    }
-
-    @FXML
-    void employeeAdd_clicked(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(ADD_EMPLOYEE));
-        stageAddEmployee = new Stage();
-        stageAddEmployee.setTitle("Dodaj pracownika");
-        Scene scene = new Scene(root);
-        stageAddEmployee.setScene(scene);
-        stageAddEmployee.initModality(Modality.APPLICATION_MODAL);
-        stageAddEmployee.show();
-
-    }
-
-    @FXML
-    void employeeRemove_clicked(MouseEvent event) {
-
+        logger.info("Zakończono dodawanie wszystkich pracowników z bazy danych");
     }
 
     @FXML
     void buttonWyswietlClicked(MouseEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(SHOW_EMPLOYEE));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(SHOW_EMPLOYEE));
         stageShowEmployee = new Stage();
         stageShowEmployee.setTitle(bundle.getString("title.application"));
+        loader.setResources(bundle);
+        Parent root = loader.load();
         Scene scene = new Scene(root);
         stageShowEmployee.setScene(scene);
         stageShowEmployee.initModality(Modality.APPLICATION_MODAL);
         stageShowEmployee.show();
     }
 
+    public static Shop getShop() {
+        return shop;
+    }
+
+    public static Stage getStageShowEmployee() {
+        return stageShowEmployee;
+    }
+
     /**
      * Pobniera z bazy danych wszystkie rekordy i dodaje do listy w klasie Shop
      */
-    private void getAllEmployeFromDatabase() {
+    public static void getAllEmployeFromDatabase() {
         String query = "SELECT * FROM `employee`";
         DBConnector dbConnector = new DBConnector();
         ResultSet resultSet = dbConnector.executeSelect(query);
@@ -89,7 +82,6 @@ public class MainWindowController {
             }
 
         }
-        logger.info("Zakończono dodawanie wszystkich pracowników z bazy danych");
         shop.showAllEmployee();
     }
 

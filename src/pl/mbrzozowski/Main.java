@@ -15,11 +15,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader fxmlLoader = null;
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/mainWindow.fxml"));;
-//        ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
-//        primaryStage.setTitle(bundle.getString("title.application"));
-//        fxmlLoader.setResources(bundle);
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/mainWindow.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
+        loader.setResources(bundle);
+        primaryStage.setTitle(bundle.getString("title.application"));
+        Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();

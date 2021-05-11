@@ -1,24 +1,25 @@
 package pl.mbrzozowski.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.mbrzozowski.database.DBConnector;
 
 public class AddEmployeeController {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
-    private static int id;
     private static String name;
     private static String secondName;
     private static int sizeTime;
     private static String position;
-
-    @FXML
-    private TextField textFieldId;
+    private ShowEmployeeController showEmployeeController;
 
     @FXML
     private TextField textFieldName;
@@ -43,76 +44,95 @@ public class AddEmployeeController {
     private Button buttonAnuluj;
 
     public void initialize(){
-        id=setNewId();
-        textFieldId.setText(String.valueOf(id));
         name=null;
         secondName=null;
         position = null;
         sizeTime=0;
-        logger.info("Okno Dodaj pracownika zostało otwarte.");
         choiceBoxSizeTime.setValue("Wysokość etatu");
         choiceBoxSizeTime.getItems().addAll(sizeTimeData);
         choiceBoxPosition.setValue("Stanowisko");
         choiceBoxPosition.getItems().addAll(positionData);
-
         buttonDodaj.setDisable(true);
-        textFieldId.setDisable(true);
+        choiceBoxSizeTime.setOnAction(this::checkValues);
+        choiceBoxPosition.setOnAction(this::checkValues);
+        logger.info("Okno Dodaj pracownika zostało otwarte.");
     }
 
     @FXML
     void buttonAnulujClicked(MouseEvent event) {
         logger.info("Okno Dodaj pracownika zostało zamknięte.");
-        MainWindowController.stageAddEmployee.close();
-
+        Stage stage = ShowEmployeeController.getStageAddEmployee();
+        stage.close();
     }
 
     @FXML
     void buttonDodajClicked(MouseEvent event) {
-        boolean[] acceptData = new boolean[7];
-        acceptData[0] = validationId(textFieldId.getText());
-        acceptData[1] = validationString(textFieldName,textFieldName.getText());
-        acceptData[2] = validationString(textFieldSecendName,textFieldSecendName.getText());
-        acceptData[3] = validationSizeTime(choiceBoxSizeTime.getValue().toString());
-        acceptData[4] = validationPosition(choiceBoxPosition.getValue().toString());
-        acceptData[5] = MainWindowController.shop.isPossibleAddEmployeeToShop(id); // czy istnieje już pracownik o takim samym id
-        acceptData[6] = true;
-        for (int i = 0; i < 6; i++) {
-            if (acceptData[i]==false){
-                acceptData[6]=false;
-                break;
+        name = textFieldName.getText();
+        secondName = textFieldSecendName.getText();
+        setSizeTime(choiceBoxSizeTime.getValue());
+        position = choiceBoxPosition.getValue();
+
+        DBConnector connector = new DBConnector();
+        String queryInsert="INSERT INTO `employee`(`name`, `surname`, `sizeTime`, `position`) VALUES ('%s','%s','%d','%s')";
+        logger.info(String.format(queryInsert,name,secondName,sizeTime,position));
+        connector.executeQuery(String.format(queryInsert,name,secondName,sizeTime,position));
+        MainWindowController.getShop().clearEmployees();
+        MainWindowController.getAllEmployeFromDatabase();
+
+        ShowEmployeeController.getStageAddEmployee().close();
+
+//        ShowEmployeeController showEmployeeController = new ShowEmployeeController();
+//        showEmployeeController.updateTableView();
+        logger.info("Dodano pracownika. Okno Dodaj pracownika zostało zamknięte");
+    }
+
+    void checkValues(ActionEvent actionEvent){
+        if(!getIfName() || !getIfSurname() || !getIfSizeTime() || !getIfPosition()){
+            buttonDodaj.setDisable(true);
+        }else {
+            if (validationString(textFieldName,textFieldName.getText()) && validationString(textFieldSecendName,textFieldSecendName.getText())){
+                buttonDodaj.setDisable(false);
+            }
+            else {
+                buttonDodaj.setDisable(true);
             }
         }
-
-        if (acceptData[6]){
-            MainWindowController.shop.addEmployee(id,name,secondName,sizeTime,position);
-            MainWindowController.stageAddEmployee.close();
-            logger.info("Dodano pracownika. Okno Dodaj pracownika zostało zamknięte");
-        }
-        else {
-            logger.error("Wprowadzono błędne dane. Dodanie pracownika nie możliwe.");
-        }
-
     }
 
     @FXML
-    void checkValues(){
-        if(textFieldName.getText().isEmpty() || textFieldSecendName.getText().isEmpty() || textFieldId.getText().isEmpty()){
-            buttonDodaj.setDisable(true);
-        }else {
-            buttonDodaj.setDisable(false);
-        }
+    public void checkValuesAfterKeyEvent(KeyEvent keyEvent){
+        checkValues(new ActionEvent());
     }
 
-    private int setNewId() {
-        return MainWindowController.shop.getMaxId()+1;
-    }
-
-    public boolean validationSizeTime(String value) {
-        if (value.equals("Wysokość etatu")){
-            logger.error("Nie wybrano wielkości etatu.");
+    public boolean getIfSizeTime() {
+        if (choiceBoxSizeTime.getValue().equals("Wysokość etatu")) {
             return false;
         }
+        return true;
+    }
 
+    public boolean getIfPosition() {
+        if (choiceBoxPosition.getValue().equals("Stanowisko")) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean getIfName(){
+        if (textFieldName.getText().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean getIfSurname(){
+        if (textFieldSecendName.getText().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    public void setSizeTime(String value) {
         switch (value){
             case "Pełny etat":
                 sizeTime = 1;
@@ -129,18 +149,6 @@ public class AddEmployeeController {
             default:
                 sizeTime = 1;
         }
-
-        return true;
-    }
-
-    public boolean validationPosition(String value) {
-        if(value.equals("Stanowisko")){
-            logger.error("Nie wybrano stanowiska.");
-            return false;
-        }
-
-        position = value;
-        return true;
     }
 
 
@@ -169,20 +177,5 @@ public class AddEmployeeController {
 
         return true;
     }
-
-    public boolean validationId(String textFieldId) {
-        try {
-            id = Integer.parseInt(textFieldId);
-            return true;
-        }catch (NumberFormatException e){
-            logger.error("Podane ID nie jest liczbą!");
-            return false;
-        }
-
-    }
-
-
-
-
 
 }
