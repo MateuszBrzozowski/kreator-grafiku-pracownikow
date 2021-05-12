@@ -6,30 +6,32 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public abstract class EmployeeValues {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
+    protected static String name =null;
+    protected static String surname =null;
+    protected static int sizeTime=0;
+    protected static String position=null;
 
-    private static String name =null;
-    private static String surname =null;
-    private static int sizeTime=0;
-    private static String position=null;
+    @FXML
+    protected TextField textFieldName;
+    @FXML
+    protected TextField textFieldSecendName;
+    @FXML
+    protected ChoiceBox<String> choiceBoxSizeTime;
+    protected String[] sizeTimeData = {"Pełny etat","1/2 etatu","1/3 etatu","1/4 etatu"};
+    @FXML
+    protected ChoiceBox<String> choiceBoxPosition;
+    protected String[] positionData = {"Dyrektor","Manager","Sprzedawca"};
+    @FXML
+    protected Button buttonDodaj;
 
-    @FXML
-    private TextField textFieldName;
-    @FXML
-    private TextField textFieldSecendName;
-    @FXML
-    private ChoiceBox<String> choiceBoxSizeTime;
-    private String[] sizeTimeData = {"Pełny etat","1/2 etatu","1/3 etatu","1/4 etatu"};
-    @FXML
-    private ChoiceBox<String> choiceBoxPosition;
-    private String[] positionData = {"Dyrektor","Manager","Sprzedawca"};
-    @FXML
-    private Button buttonDodaj;
 
     public void checkValues(ActionEvent actionEvent){
         if(!getIfName() || !getIfSurname() || !getIfSizeTime() || !getIfPosition()){
@@ -43,6 +45,7 @@ public abstract class EmployeeValues {
             }
         }
     }
+
 
     public void setSizeTime(String value) {
         switch (value){
@@ -125,5 +128,37 @@ public abstract class EmployeeValues {
         }
 
         return true;
+    }
+
+    public static String getName() {
+        return name;
+    }
+
+    public static void setName(String name) {
+        EmployeeValues.name = name;
+    }
+
+    public static String getSurname() {
+        return surname;
+    }
+
+    public static void setSurname(String surname) {
+        EmployeeValues.surname = surname;
+    }
+
+    public static int getSizeTime() {
+        return sizeTime;
+    }
+
+    public static void setSizeTime(int sizeTime) {
+        EmployeeValues.sizeTime = sizeTime;
+    }
+
+    public static String getPosition() {
+        return position;
+    }
+
+    public static void setPosition(String position) {
+        EmployeeValues.position = position;
     }
 }

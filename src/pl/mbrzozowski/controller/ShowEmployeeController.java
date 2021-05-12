@@ -22,12 +22,14 @@ import java.io.IOException;
 import java.util.ResourceBundle;
 
 public class ShowEmployeeController {
-
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
+
+    private static final String EDIT_EMPLOYEE = "/fxml/editEmployee.fxml";
     private static final String ADD_EMPLOYEE = "/fxml/addEmployee.fxml";
     private static Stage stageAddEmployee;
     private static Stage stageEditEmployee;
     private EmployeeModel employeeModel;
+    private ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
 
     @FXML
     private  TableView<EmployeeFX> tableView;
@@ -41,6 +43,10 @@ public class ShowEmployeeController {
     private  TableColumn<EmployeeFX,Integer> tableViewWielkoscEtatu;
     @FXML
     private  TableColumn<EmployeeFX,String> tableViewStanowisko;
+
+    public static Stage getStageEditEmployee() {
+        return stageEditEmployee;
+    }
 
     @FXML
     public void initialize() {
@@ -78,7 +84,6 @@ public class ShowEmployeeController {
     public void buttonAddEmployee_Clicked() throws IOException {
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource(ADD_EMPLOYEE));
         stageAddEmployee = new Stage();
-        ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
         loader.setResources(bundle);
         stageAddEmployee.setTitle(bundle.getString("title.addEmployee"));
         Parent root =loader.load();
@@ -94,9 +99,18 @@ public class ShowEmployeeController {
     }
 
     @FXML
-    public void buttonEditEmployee_Clicked(MouseEvent event) {
+    public void buttonEditEmployee_Clicked(MouseEvent event) throws IOException {
         //TODO Edytowanie pracownika - stage scena taka  jak dodawanie pracownikow z tym ze tu juz bedzie usupelniona.
         //Pobierany dane z zaznaczonego wiersza w TableView
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(EDIT_EMPLOYEE));
+        stageEditEmployee = new Stage();
+        loader.setResources(bundle);
+        stageEditEmployee.setTitle(bundle.getString("title.editEmployee"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stageEditEmployee.setScene(scene);
+        stageEditEmployee.initModality(Modality.APPLICATION_MODAL);
+        stageEditEmployee.show();
     }
 
     public static Stage getStageAddEmployee() {

@@ -19,7 +19,7 @@ public class EmployeeModel {
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
 
     private ObservableList<EmployeeFX> employeeList = FXCollections.observableArrayList();
-    private ObjectProperty<Employee> employeeSelected = new SimpleObjectProperty<>();
+    private ObjectProperty<EmployeeFX> employeeSelected = new SimpleObjectProperty<>(new EmployeeFX());
 
     public void init(){
         ResultSet resultSet = getAllEmployeeFromDataBase();
@@ -79,15 +79,15 @@ public class EmployeeModel {
         this.employeeList = employeeList;
     }
 
-    public Employee getEmployeeSelected() {
+    public EmployeeFX getEmployeeSelected() {
         return employeeSelected.get();
     }
 
-    public ObjectProperty<Employee> employeeSelectedProperty() {
+    public ObjectProperty<EmployeeFX> employeeSelectedProperty() {
         return employeeSelected;
     }
 
-    public void setEmployeeSelected(Employee employeeSelected) {
+    public void setEmployeeSelected(EmployeeFX employeeSelected) {
         this.employeeSelected.set(employeeSelected);
     }
 }

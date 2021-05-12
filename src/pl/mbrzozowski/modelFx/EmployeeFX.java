@@ -25,6 +25,9 @@ public class EmployeeFX {
         this.position = positionProperty;
     }
 
+    public EmployeeFX() {
+    }
+
 
     public int getId() {
         return id.get();
