@@ -31,7 +31,7 @@
                </children>
             </HBox>
             <Separator prefWidth="200.0" />
-            <TableView fx:id="tableView" prefWidth="200.0" tableMenuButtonVisible="true">
+            <TableView fx:id="tableView" onMouseClicked="#tableView_Clicked" prefWidth="200.0" tableMenuButtonVisible="true">
               <columns>
                 <TableColumn fx:id="tableViewID" prefWidth="50.0" text="ID" />
                 <TableColumn fx:id="tableViewImie" prefWidth="200.0" text="Imię" />

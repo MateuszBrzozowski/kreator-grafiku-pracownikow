@@ -3,21 +3,29 @@ package pl.mbrzozowski.shop;
 public class Employee {
     private int id;
     private String name;
-    private String secendName;
+    private String surname;
     private int sizeTime; // 1 - pelny etat; 2 - polowa etatu itd.
     private String position;
 
     /**
      * @param id id pracownika
      * @param name pracownika
-     * @param secendName pracownika
+     * @param surname pracownika
      * @param sizeTime - wymiar etatu; 1- pelny etat, 2 - pol etatu, 3 - 1/3 etatu, 4 - 1/4 etatu
      * @param position - stanowisko zajmowane przez pracownika
      */
-    public Employee(int id, String name, String secendName, int sizeTime, String position) {
+    public Employee(int id, String name, String surname, int sizeTime, String position) {
         this.id = id;
         this.name = name;
-        this.secendName = secendName;
+        this.surname = surname;
+        this.sizeTime = sizeTime;
+        this.position = position;
+    }
+
+    public Employee(String name, String surname, int sizeTime, String position) {
+        this.id = 0;
+        this.name = name;
+        this.surname = surname;
         this.sizeTime = sizeTime;
         this.position = position;
     }
@@ -34,12 +42,12 @@ public class Employee {
         this.name = name;
     }
 
-    public String getSecendName() {
-        return secendName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setSecendName(String secendName) {
-        this.secendName = secendName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public int getSizeTime() {

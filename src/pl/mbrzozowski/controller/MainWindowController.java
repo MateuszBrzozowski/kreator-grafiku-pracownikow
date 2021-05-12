@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.mbrzozowski.database.DBConnector;
+import pl.mbrzozowski.modelFx.EmployeeModel;
 import pl.mbrzozowski.shop.Shop;
 
 import javafx.fxml.FXML;
@@ -61,9 +62,8 @@ public class MainWindowController {
      * Pobniera z bazy danych wszystkie rekordy i dodaje do listy w klasie Shop
      */
     public static void getAllEmployeFromDatabase() {
-        String query = "SELECT * FROM `employee`";
-        DBConnector dbConnector = new DBConnector();
-        ResultSet resultSet = dbConnector.executeSelect(query);
+        EmployeeModel employeeModel = new EmployeeModel();
+        ResultSet resultSet = employeeModel.getAllEmployeeFromDataBase();
 
         while (true){
             try {
@@ -82,7 +82,7 @@ public class MainWindowController {
             }
 
         }
-        shop.showAllEmployee();
+//        shop.showAllEmployee();
     }
 
     /**

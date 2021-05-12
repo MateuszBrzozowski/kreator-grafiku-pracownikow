@@ -2,12 +2,7 @@ package pl.mbrzozowski.shop;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.mbrzozowski.database.DBConnector;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -76,7 +71,7 @@ public class Shop {
 
     public void showAllEmployee(){
         for (Employee employee: employees) {
-            logger.info("Pracownik o ID [{}] : {} {}, etat: {}, na stanowisku: {} ",employee.getId(),employee.getName(),employee.getSecendName(),employee.getSizeTime(),employee.getPosition());
+            logger.info("Pracownik o ID [{}] : {} {}, etat: {}, na stanowisku: {} ",employee.getId(),employee.getName(),employee.getSurname(),employee.getSizeTime(),employee.getPosition());
         }
     }
 }

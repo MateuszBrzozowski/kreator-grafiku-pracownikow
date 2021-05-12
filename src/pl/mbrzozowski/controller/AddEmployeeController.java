@@ -1,5 +1,8 @@
 package pl.mbrzozowski.controller;
 
+import javafx.beans.property.Property;
+import javafx.beans.value.ObservableValue;
+import javafx.beans.value.ObservableValueBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,53 +13,45 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.mbrzozowski.database.DBConnector;
+import pl.mbrzozowski.modelFx.EmployeeModel;
 
 public class AddEmployeeController {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
-    private static String name;
-    private static String secondName;
-    private static int sizeTime;
-    private static String position;
-    private ShowEmployeeController showEmployeeController;
+    private static String name =null;
+    private static String surname =null;
+    private static int sizeTime=0;
+    private static String position=null;
 
     @FXML
     private TextField textFieldName;
-
     @FXML
     private TextField textFieldSecendName;
-
     @FXML
     private ChoiceBox<String> choiceBoxSizeTime;
-
     private String[] sizeTimeData = {"Pełny etat","1/2 etatu","1/3 etatu","1/4 etatu"};
-
     @FXML
     private ChoiceBox<String> choiceBoxPosition;
-
     private String[] positionData = {"Dyrektor","Manager","Sprzedawca"};
-
     @FXML
     private Button buttonDodaj;
-
     @FXML
     private Button buttonAnuluj;
 
+    private EmployeeModel employeeModel;
+
     public void initialize(){
-        name=null;
-        secondName=null;
-        position = null;
-        sizeTime=0;
+        this.employeeModel =new EmployeeModel();
+        buttonDodaj.setDisable(true);
         choiceBoxSizeTime.setValue("Wysokość etatu");
         choiceBoxSizeTime.getItems().addAll(sizeTimeData);
         choiceBoxPosition.setValue("Stanowisko");
         choiceBoxPosition.getItems().addAll(positionData);
-        buttonDodaj.setDisable(true);
         choiceBoxSizeTime.setOnAction(this::checkValues);
         choiceBoxPosition.setOnAction(this::checkValues);
         logger.info("Okno Dodaj pracownika zostało otwarte.");
     }
+
 
     @FXML
     void buttonAnulujClicked(MouseEvent event) {
@@ -68,22 +63,19 @@ public class AddEmployeeController {
     @FXML
     void buttonDodajClicked(MouseEvent event) {
         name = textFieldName.getText();
-        secondName = textFieldSecendName.getText();
+        surname = textFieldSecendName.getText();
         setSizeTime(choiceBoxSizeTime.getValue());
         position = choiceBoxPosition.getValue();
 
-        DBConnector connector = new DBConnector();
-        String queryInsert="INSERT INTO `employee`(`name`, `surname`, `sizeTime`, `position`) VALUES ('%s','%s','%d','%s')";
-        logger.info(String.format(queryInsert,name,secondName,sizeTime,position));
-        connector.executeQuery(String.format(queryInsert,name,secondName,sizeTime,position));
-        MainWindowController.getShop().clearEmployees();
-        MainWindowController.getAllEmployeFromDatabase();
-
+        employeeModel.addEmployeeToDatabase(name,surname,sizeTime,position);
         ShowEmployeeController.getStageAddEmployee().close();
 
-//        ShowEmployeeController showEmployeeController = new ShowEmployeeController();
-//        showEmployeeController.updateTableView();
         logger.info("Dodano pracownika. Okno Dodaj pracownika zostało zamknięte");
+    }
+
+    @FXML
+    public void checkValuesAfterKeyEvent(KeyEvent keyEvent){
+        checkValues(new ActionEvent());
     }
 
     void checkValues(ActionEvent actionEvent){
@@ -99,10 +91,7 @@ public class AddEmployeeController {
         }
     }
 
-    @FXML
-    public void checkValuesAfterKeyEvent(KeyEvent keyEvent){
-        checkValues(new ActionEvent());
-    }
+
 
     public boolean getIfSizeTime() {
         if (choiceBoxSizeTime.getValue().equals("Wysokość etatu")) {
@@ -152,6 +141,11 @@ public class AddEmployeeController {
     }
 
 
+    /**
+     * @param textField
+     * @param text w textField
+     * @return true - jeżli text jest dopuszczalny do wprowadzniea; false - jeżeli tekst zawiera znaki nie prawidłowe.
+     */
     public boolean validationString(TextField textField, String text) {
         if (text.length()>0){
             for (int i = 0; i < text.length(); i++) {
@@ -171,7 +165,7 @@ public class AddEmployeeController {
                 name = textField.getText();
                 break;
             case "nazwisko":
-                secondName = textField.getText();
+                surname = textField.getText();
                 break;
         }
 
