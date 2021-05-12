@@ -58,4 +58,8 @@ public class MainWindowController {
         return shop;
     }
 
+    public static Stage getStageShowEmployee(){
+        return stageShowEmployee;
+    }
+
 }

@@ -33,6 +33,11 @@
                         <Button fx:id="buttonDeletedEmployee" maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" onMouseClicked="#buttonDeleteEmployee_Clicked" prefWidth="120.0" text="%employee.delete" />
                      </children>
                   </HBox>
+                  <HBox AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Button fx:id="buttonClose" maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" onMouseClicked="#buttonClose_Clicked" prefWidth="120.0" text="%back" />
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
             <Separator prefWidth="200.0" />

@@ -130,7 +130,6 @@ public class ShowEmployeeController {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
-                    //TODO usuń pracownika - odśwież table
                     employeeModel.deleteByID(selectedEmployeeFX.getId());
                     employeeModel.init();
                     logger.info("Usunięto pracownika");
@@ -141,5 +140,9 @@ public class ShowEmployeeController {
         }catch (NullPointerException e){
             logger.info("Nie wybrano pracownika do usunięcia");
         }
+    }
+
+    public void buttonClose_Clicked(MouseEvent event) {
+        MainWindowController.getStageShowEmployee().close();
     }
 }
