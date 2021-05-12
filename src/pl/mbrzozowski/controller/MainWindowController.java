@@ -38,6 +38,7 @@ public class MainWindowController {
 
     @FXML
     void buttonWyswietlClicked(MouseEvent event) throws IOException {
+        employeeModel.init();
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource(SHOW_EMPLOYEE));
         stageShowEmployee = new Stage();
         stageShowEmployee.setTitle(bundle.getString("title.application"));
@@ -55,36 +56,6 @@ public class MainWindowController {
 
     public static Shop getShop() {
         return shop;
-    }
-
-    public static Stage getStageShowEmployee() {
-        return stageShowEmployee;
-    }
-
-    /**
-     * Pobniera z bazy danych wszystkie rekordy i dodaje do listy w klasie Shop
-     */
-    public static void getAllEmployeFromDatabase() {
-        EmployeeModel employeeModel = new EmployeeModel();
-        ResultSet resultSet = employeeModel.getAllEmployeeFromDataBase();
-
-        while (true){
-            try {
-                if (!resultSet.next()) break;
-                else {
-                    int id = resultSet.getInt("ID");
-                    String name = resultSet.getString("employee.name");
-                    String surname = resultSet.getString("employee.surname");
-                    int sizeTime = resultSet.getInt("sizeTime");
-                    String position = resultSet.getString("position");
-                    shop.addEmployee(id,name,surname,sizeTime,position);
-
-                }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-
-        }
     }
 
 }

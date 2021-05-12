@@ -47,14 +47,21 @@ public class EmployeeModel {
         employeeLinkedList.forEach(e -> {
             EmployeeFX employeeFX = new EmployeeFX(e.getId(),e.getName(),e.getSurname(),e.getSizeTime(),e.getPosition());
             this.employeeList.add(employeeFX);
-            logger.info("Dodaje pracownika do aplikacji o ID: {} - {} {}",e.getId(),e.getName(),e.getSurname());
+
         });
+        logger.info("Załadowo bazę danych do aplikacji");
     }
 
     public void addEmployeeToDatabase(String name, String surname, int sizeTime, String position){
         String query = "INSERT INTO `employee`(`name`, `surname`, `sizeTime`, `position`) VALUES ('%s','%s','%d','%s')";
         DBConnector connector = new DBConnector();
         connector.executeQuery(String.format(query,name,surname,sizeTime,position));
+    }
+
+    public void updateEmployeDataBase(int id, String name, String surname, int sizeTime, String position){
+        String query = "UPDATE `employee` SET `name`='%s',`surname`='%s',`sizeTime`='%d',`position`='%s' WHERE id=%d";
+        DBConnector connector = new DBConnector();
+        connector.executeQuery(String.format(query,name,surname,sizeTime,position,id));
     }
 
     public ResultSet getAllEmployeeFromDataBase(){

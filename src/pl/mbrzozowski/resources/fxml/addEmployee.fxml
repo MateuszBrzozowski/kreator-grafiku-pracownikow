@@ -35,7 +35,7 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="textFieldSecendName" onKeyReleased="#checkValuesAfterKeyEvent" promptText="%employee.surname">
+            <TextField fx:id="textFieldSurname" onKeyReleased="#checkValuesAfterKeyEvent" promptText="%employee.surname">
                <font>
                   <Font size="15.0" />
                </font>

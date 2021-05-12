@@ -41,7 +41,7 @@ public class DBConnector {
             Statement statement = connection.createStatement();
             logger.info("Zapytanie do bazy danych zakończone powodzeniem");
             statement.execute(query);
-            connection.close();
+
         } catch (SQLException throwables) {
             logger.error("Zapytanie do bazy danych zakończone niepowodzeniem");
             throw new RuntimeException(throwables.getMessage());

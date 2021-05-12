@@ -14,7 +14,7 @@
    <children>
       <VBox layoutX="63.0" layoutY="32.0" prefHeight="224.0" prefWidth="360.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj pracownika">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%title.editEmployee">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -35,7 +35,7 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="textFieldSecendName" onKeyReleased="#checkValuesAfterKeyEvent" promptText="%employee.surname">
+            <TextField fx:id="textFieldSurname" onKeyReleased="#checkValuesAfterKeyEvent" promptText="%employee.surname">
                <font>
                   <Font size="15.0" />
                </font>

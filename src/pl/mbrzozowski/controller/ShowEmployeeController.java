@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -29,18 +30,19 @@ public class ShowEmployeeController {
     private static Stage stageAddEmployee;
     private static Stage stageEditEmployee;
     private EmployeeModel employeeModel;
+    private EmployeeFX selectedEmployeeFX;
     private ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
 
     @FXML
     private  TableView<EmployeeFX> tableView;
     @FXML
-    private  TableColumn<EmployeeFX,Integer> tableViewID;
+    private  TableColumn<EmployeeFX,Number> tableViewID;
     @FXML
     private  TableColumn<EmployeeFX,String> tableViewImie;
     @FXML
     private  TableColumn<EmployeeFX,String> tableViewNazwisko;
     @FXML
-    private  TableColumn<EmployeeFX,Integer> tableViewWielkoscEtatu;
+    private  TableColumn<EmployeeFX,Number> tableViewWielkoscEtatu;
     @FXML
     private  TableColumn<EmployeeFX,String> tableViewStanowisko;
 
@@ -52,18 +54,18 @@ public class ShowEmployeeController {
     public void initialize() {
         this.employeeModel = MainWindowController.getEmployeeModel();
         initTableView();
-        tableView.setEditable(true);
         logger.info("Okno Pracownicy zostalo otwarte.");
     }
 
     @FXML
     public void tableView_Clicked(){
-        int id = 0;
-        String name = null;
-        String surname = null;
-        int sizeTime = 0;
-        String position = null;
-        Employee employee = new Employee(id,name,surname,sizeTime,position);
+        TablePosition pos = tableView.getSelectionModel().getSelectedCells().get(0);
+        int row = pos.getRow();
+
+        selectedEmployeeFX = tableView.getItems().get(row);
+        employeeModel.setEmployeeSelected(selectedEmployeeFX);
+
+        logger.info("Wybrano [{}] - {} {}",selectedEmployeeFX.getId(),selectedEmployeeFX.getName(),selectedEmployeeFX.getSurname());
     }
 
 
@@ -71,13 +73,12 @@ public class ShowEmployeeController {
         ObservableList<EmployeeFX> employees = FXCollections.observableArrayList();
         employees = employeeModel.getEmployeeList();
 
-        tableViewID.setCellValueFactory(new PropertyValueFactory<EmployeeFX,Integer>("id"));
-        tableViewImie.setCellValueFactory(new PropertyValueFactory<EmployeeFX,String>("name"));
-        tableViewNazwisko.setCellValueFactory(new PropertyValueFactory<EmployeeFX,String>("surname"));
-        tableViewWielkoscEtatu.setCellValueFactory(new PropertyValueFactory<EmployeeFX,Integer>("sizeTime"));
-        tableViewStanowisko.setCellValueFactory(new PropertyValueFactory<EmployeeFX,String>("position"));
-
         tableView.setItems(employees);
+        this.tableViewID.setCellValueFactory(employeeFXIntegerCellDataFeatures -> employeeFXIntegerCellDataFeatures.getValue().idProperty());
+        this.tableViewImie.setCellValueFactory(employeeFXStringCellDataFeatures -> employeeFXStringCellDataFeatures.getValue().nameProperty());
+        this.tableViewNazwisko.setCellValueFactory(employeeFXStringCellDataFeatures -> employeeFXStringCellDataFeatures.getValue().surnameProperty());
+        this.tableViewStanowisko.setCellValueFactory(employeeFXStringCellDataFeatures -> employeeFXStringCellDataFeatures.getValue().positionProperty());
+        this.tableViewWielkoscEtatu.setCellValueFactory(employeeFXIntegerCellDataFeatures -> employeeFXIntegerCellDataFeatures.getValue().sizeTimeProperty());
     }
 
     @FXML
@@ -100,17 +101,24 @@ public class ShowEmployeeController {
 
     @FXML
     public void buttonEditEmployee_Clicked(MouseEvent event) throws IOException {
-        //TODO Edytowanie pracownika - stage scena taka  jak dodawanie pracownikow z tym ze tu juz bedzie usupelniona.
-        //Pobierany dane z zaznaczonego wiersza w TableView
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(EDIT_EMPLOYEE));
-        stageEditEmployee = new Stage();
-        loader.setResources(bundle);
-        stageEditEmployee.setTitle(bundle.getString("title.editEmployee"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        stageEditEmployee.setScene(scene);
-        stageEditEmployee.initModality(Modality.APPLICATION_MODAL);
-        stageEditEmployee.show();
+        //TODO jeżli jest zaznaczony wiersz w Table View to otwórz editable Employee
+        try {
+            if (selectedEmployeeFX.getName()!=null){
+                FXMLLoader loader = new FXMLLoader(this.getClass().getResource(EDIT_EMPLOYEE));
+                stageEditEmployee = new Stage();
+                loader.setResources(bundle);
+                stageEditEmployee.setTitle(bundle.getString("title.editEmployee"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                stageEditEmployee.setScene(scene);
+                stageEditEmployee.initModality(Modality.APPLICATION_MODAL);
+                stageEditEmployee.show();
+            }
+        }catch (NullPointerException e){
+            logger.info("Nie wybrano pracownika do edycji.");
+        }
+
+
     }
 
     public static Stage getStageAddEmployee() {

@@ -6,10 +6,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.mbrzozowski.modelFx.EmployeeModel;
 
 public abstract class EmployeeValues {
 
@@ -22,7 +21,7 @@ public abstract class EmployeeValues {
     @FXML
     protected TextField textFieldName;
     @FXML
-    protected TextField textFieldSecendName;
+    protected TextField textFieldSurname;
     @FXML
     protected ChoiceBox<String> choiceBoxSizeTime;
     protected String[] sizeTimeData = {"Pełny etat","1/2 etatu","1/3 etatu","1/4 etatu"};
@@ -37,7 +36,7 @@ public abstract class EmployeeValues {
         if(!getIfName() || !getIfSurname() || !getIfSizeTime() || !getIfPosition()){
             buttonDodaj.setDisable(true);
         }else {
-            if (validationString(textFieldName,textFieldName.getText()) && validationString(textFieldSecendName,textFieldSecendName.getText())){
+            if (validationString(textFieldName,textFieldName.getText()) && validationString(textFieldSurname, textFieldSurname.getText())){
                 buttonDodaj.setDisable(false);
             }
             else {
@@ -93,7 +92,7 @@ public abstract class EmployeeValues {
     }
 
     public boolean getIfSurname(){
-        if (textFieldSecendName.getText().isEmpty()) {
+        if (textFieldSurname.getText().isEmpty()) {
             return false;
         }
         return true;

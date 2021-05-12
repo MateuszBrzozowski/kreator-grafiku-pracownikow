@@ -1,14 +1,7 @@
 package pl.mbrzozowski.controller;
 
-import javafx.beans.property.Property;
-import javafx.beans.value.ObservableValue;
-import javafx.beans.value.ObservableValueBase;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -39,13 +32,13 @@ public class AddEmployeeController extends EmployeeValues{
     @FXML
     void buttonDodajClicked(MouseEvent event) {
         name = textFieldName.getText();
-        surname = textFieldSecendName.getText();
+        surname = textFieldSurname.getText();
         setSizeTime(choiceBoxSizeTime.getValue());
         position = choiceBoxPosition.getValue();
 
         employeeModel.addEmployeeToDatabase(name,surname,sizeTime,position);
         ShowEmployeeController.getStageAddEmployee().close();
-
+        employeeModel.init();
         logger.info("Dodano pracownika. Okno Dodaj pracownika zostało zamknięte");
     }
 
