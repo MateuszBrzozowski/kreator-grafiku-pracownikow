@@ -72,10 +72,9 @@ public class EmployeeModel {
     }
 
     public void deleteByID(Integer id){
-        //TODO usuwanie pracownika
-//        String query = "DELETE FROM `employee` WHERE id=%d";
-//        DBConnector connector = new DBConnector();
-//        connector.executeQuery(String.format(query,id));
+        String query = "DELETE FROM `employee` WHERE id=%d";
+        DBConnector connector = new DBConnector();
+        connector.executeQuery(String.format(query,id));
     }
 
     public ObservableList<EmployeeFX> getEmployeeList() {

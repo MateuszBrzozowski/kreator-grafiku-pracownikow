@@ -6,9 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -20,6 +18,7 @@ import pl.mbrzozowski.modelFx.EmployeeModel;
 import pl.mbrzozowski.shop.Employee;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ShowEmployeeController {
@@ -95,13 +94,7 @@ public class ShowEmployeeController {
     }
 
     @FXML
-    public void buttonRefresh_Clicked(MouseEvent event) {
-        //TODO odswiezanie tabeli
-    }
-
-    @FXML
     public void buttonEditEmployee_Clicked(MouseEvent event) throws IOException {
-        //TODO jeżli jest zaznaczony wiersz w Table View to otwórz editable Employee
         try {
             if (selectedEmployeeFX.getName()!=null){
                 FXMLLoader loader = new FXMLLoader(this.getClass().getResource(EDIT_EMPLOYEE));
@@ -129,5 +122,24 @@ public class ShowEmployeeController {
     public void buttonDeleteEmployee_Clicked() {
         //TODO Usuwanie pracownika - pobiera dane pracownika z zaznaczonego z TableView - pyta czy na pewno usunac
         //i usuwa pracownika z EmployeModel a potem z bazy danych
+        try {
+            if (selectedEmployeeFX.getName()!=null){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Jesteś pewien?");
+                alert.setHeaderText(String.format("Czy jesteś pewien że chcesz usunąć pracownika %s %s",selectedEmployeeFX.getName(),selectedEmployeeFX.getSurname()));
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    //TODO usuń pracownika - odśwież table
+                    employeeModel.deleteByID(selectedEmployeeFX.getId());
+                    employeeModel.init();
+                    logger.info("Usunięto pracownika");
+                }else {
+                    logger.info("Anulowano");
+                }
+            }
+        }catch (NullPointerException e){
+            logger.info("Nie wybrano pracownika do usunięcia");
+        }
     }
 }
