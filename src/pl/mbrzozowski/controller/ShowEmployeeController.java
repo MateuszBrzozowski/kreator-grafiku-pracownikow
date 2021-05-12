@@ -2,21 +2,20 @@ package pl.mbrzozowski.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.mbrzozowski.modelFx.EmployeeFX;
+import pl.mbrzozowski.modelFx.EmployeeModel;
 import pl.mbrzozowski.shop.Employee;
 
 import java.io.IOException;
@@ -27,26 +26,28 @@ public class ShowEmployeeController {
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
     private static final String ADD_EMPLOYEE = "/fxml/addEmployee.fxml";
     private static Stage stageAddEmployee;
-    private ObservableList<Employee> employees = FXCollections.observableArrayList();
+    private static Stage stageEditEmployee;
+    private EmployeeModel employeeModel;
 
     @FXML
-    private  TableView<Employee> tableView;
+    private  TableView<EmployeeFX> tableView;
     @FXML
-    private  TableColumn<Employee,Integer> tableViewID;
+    private  TableColumn<EmployeeFX,Integer> tableViewID;
     @FXML
-    private  TableColumn<Employee,String> tableViewImie;
+    private  TableColumn<EmployeeFX,String> tableViewImie;
     @FXML
-    private  TableColumn<Employee,String> tableViewNazwisko;
+    private  TableColumn<EmployeeFX,String> tableViewNazwisko;
     @FXML
-    private  TableColumn<Employee,Integer> tableViewWielkoscEtatu;
+    private  TableColumn<EmployeeFX,Integer> tableViewWielkoscEtatu;
     @FXML
-    private  TableColumn<Employee,String> tableViewStanowisko;
+    private  TableColumn<EmployeeFX,String> tableViewStanowisko;
 
     @FXML
     public void initialize() {
+        this.employeeModel = MainWindowController.getEmployeeModel();
         initTableView();
         tableView.setEditable(true);
-        logger.info("Okno Pokaż/Edytuj/Usuń zostalo otwarte.");
+        logger.info("Okno Pracownicy zostalo otwarte.");
     }
 
     @FXML
@@ -56,35 +57,20 @@ public class ShowEmployeeController {
         String surname = null;
         int sizeTime = 0;
         String position = null;
-
-
-
-//        TablePosition tablePosition = tableView.getSelectionModel().getSelectedCells().get(0);
-//        int row = tablePosition.getRow();
-//        Employee e = tableView.getSelectionModel().getSelectedItem();
-//        TableColumn column = tablePosition.getTableColumn();
-//
-//        String data = (String) column.getCellObservableValue(e).getValue();
-
-//        logger.info(data);
-
-
         Employee employee = new Employee(id,name,surname,sizeTime,position);
     }
 
 
     public void initTableView(){
-        //TODO wyświetlanie tabeli z bazy dancyh
-        //TODO odswiezanie
+        ObservableList<EmployeeFX> employees = FXCollections.observableArrayList();
+        employees = employeeModel.getEmployeeList();
 
-        tableViewID.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("id"));
-        tableViewImie.setCellValueFactory(new PropertyValueFactory<Employee,String>("name"));
-        tableViewNazwisko.setCellValueFactory(new PropertyValueFactory<Employee,String>("surname"));
-        tableViewWielkoscEtatu.setCellValueFactory(new PropertyValueFactory<Employee,Integer>("sizeTime"));
-        tableViewStanowisko.setCellValueFactory(new PropertyValueFactory<Employee,String>("position"));
-        for (Employee employee: MainWindowController.getShop().getEmployees()) {
-            employees.add(employee);
-        }
+        tableViewID.setCellValueFactory(new PropertyValueFactory<EmployeeFX,Integer>("id"));
+        tableViewImie.setCellValueFactory(new PropertyValueFactory<EmployeeFX,String>("name"));
+        tableViewNazwisko.setCellValueFactory(new PropertyValueFactory<EmployeeFX,String>("surname"));
+        tableViewWielkoscEtatu.setCellValueFactory(new PropertyValueFactory<EmployeeFX,Integer>("sizeTime"));
+        tableViewStanowisko.setCellValueFactory(new PropertyValueFactory<EmployeeFX,String>("position"));
+
         tableView.setItems(employees);
     }
 
@@ -102,12 +88,24 @@ public class ShowEmployeeController {
         stageAddEmployee.show();
     }
 
+    @FXML
+    public void buttonRefresh_Clicked(MouseEvent event) {
+        //TODO odswiezanie tabeli
+    }
+
+    @FXML
+    public void buttonEditEmployee_Clicked(MouseEvent event) {
+        //TODO Edytowanie pracownika - stage scena taka  jak dodawanie pracownikow z tym ze tu juz bedzie usupelniona.
+        //Pobierany dane z zaznaczonego wiersza w TableView
+    }
+
     public static Stage getStageAddEmployee() {
         return stageAddEmployee;
     }
 
     @FXML
-    public void buttonRefresh_Clicked(MouseEvent event) {
-        //TODO odswiezanie tabeli
+    public void buttonDeleteEmployee_Clicked() {
+        //TODO Usuwanie pracownika - pobiera dane pracownika z zaznaczonego z TableView - pyta czy na pewno usunac
+        //i usuwa pracownika z EmployeModel a potem z bazy danych
     }
 }

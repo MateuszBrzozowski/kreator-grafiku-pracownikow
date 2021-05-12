@@ -20,22 +20,22 @@
                </font>
             </Text>
             <Separator prefWidth="200.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%name">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%employee.name">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="textFieldName" onKeyReleased="#checkValuesAfterKeyEvent" promptText="%name">
+            <TextField fx:id="textFieldName" onKeyReleased="#checkValuesAfterKeyEvent" promptText="%employee.name">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%surname">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%employee.surname">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="textFieldSecendName" onKeyReleased="#checkValuesAfterKeyEvent" promptText="%surname">
+            <TextField fx:id="textFieldSecendName" onKeyReleased="#checkValuesAfterKeyEvent" promptText="%employee.surname">
                <font>
                   <Font size="15.0" />
                </font>

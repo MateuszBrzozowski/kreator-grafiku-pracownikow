@@ -24,20 +24,30 @@
                </VBox.margin>
             </Text>
             <Separator prefWidth="200.0" />
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+            <AnchorPane prefHeight="50.0">
                <children>
-                  <Button fx:id="buttonAddEmployee" maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" onMouseClicked="#buttonAddEmployee_Clicked" prefWidth="150.0" text="%addEmployee" />
-                  <Button fx:id="buttonRefresh" maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" onMouseClicked="#buttonRefresh_Clicked" prefWidth="100.0" text="%refresh" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="536.0" spacing="5.0" AnchorPane.leftAnchor="0.0">
+                     <children>
+                        <Button fx:id="buttonAddEmployee" maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" onMouseClicked="#buttonAddEmployee_Clicked" prefWidth="120.0" text="%addEmployee" />
+                        <Button fx:id="buttonEditEmployee" maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" onMouseClicked="#buttonEditEmployee_Clicked" prefWidth="120.0" text="%employee.edit" />
+                        <Button fx:id="buttonDeletedEmployee" maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" onMouseClicked="#buttonDeleteEmployee_Clicked" prefWidth="120.0" text="%employee.delete" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="169.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Button fx:id="buttonRefresh" maxHeight="40.0" minHeight="40.0" mnemonicParsing="false" onMouseClicked="#buttonRefresh_Clicked" prefWidth="100.0" text="%refresh" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </AnchorPane>
             <Separator prefWidth="200.0" />
             <TableView fx:id="tableView" onMouseClicked="#tableView_Clicked" prefWidth="200.0" tableMenuButtonVisible="true">
               <columns>
-                <TableColumn fx:id="tableViewID" prefWidth="50.0" text="ID" />
-                <TableColumn fx:id="tableViewImie" prefWidth="200.0" text="Imię" />
-                  <TableColumn fx:id="tableViewNazwisko" prefWidth="200.0" text="Nazwisko" />
-                  <TableColumn fx:id="tableViewWielkoscEtatu" prefWidth="150.0" text="Wielkość etatu" />
-                  <TableColumn fx:id="tableViewStanowisko" minWidth="100.0" prefWidth="150.0" text="Stanowisko" />
+                <TableColumn fx:id="tableViewID" prefWidth="50.0" text="%employee.id" />
+                <TableColumn fx:id="tableViewImie" prefWidth="200.0" text="%employee.name" />
+                  <TableColumn fx:id="tableViewNazwisko" prefWidth="200.0" text="%employee.surname" />
+                  <TableColumn fx:id="tableViewWielkoscEtatu" prefWidth="150.0" text="%employee.sizeTime" />
+                  <TableColumn fx:id="tableViewStanowisko" minWidth="100.0" prefWidth="150.0" text="%employee.position" />
               </columns>
             </TableView>
          </children>
