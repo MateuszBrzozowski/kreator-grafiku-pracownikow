@@ -19,11 +19,14 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MainWindowController {
+
     private static EmployeeModel employeeModel;
     private static Shop shop;
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
     private static Stage stageShowEmployee;
+    private static Stage stageScheduleEmployeeGenerator;
     private static final String SHOW_EMPLOYEE = "/fxml/showEmployee.fxml";
+    private static final String SCHEDULE_EMPLOYEE_GENERATOR = "/fxml/scheduleEmployeeGenerator.fxml";
     private ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
 
 
@@ -50,6 +53,21 @@ public class MainWindowController {
         stageShowEmployee.show();
     }
 
+    @FXML
+    public void buttonCreateSchedule_Clicked(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(SCHEDULE_EMPLOYEE_GENERATOR));
+        stageScheduleEmployeeGenerator = new Stage();
+        stageScheduleEmployeeGenerator.setTitle(bundle.getString("title.application"));
+        loader.setResources(bundle);
+        Parent root = loader.load();
+        Scene scene =  new Scene(root);
+        stageScheduleEmployeeGenerator.setScene(scene);
+        stageScheduleEmployeeGenerator.initModality(Modality.APPLICATION_MODAL);
+        stageScheduleEmployeeGenerator.show();
+    }
+    
+    public static Stage getStageScheduleEmployeeGenerator(){ return stageScheduleEmployeeGenerator;}
+
     public static EmployeeModel getEmployeeModel() {
         return employeeModel;
     }
@@ -61,5 +79,6 @@ public class MainWindowController {
     public static Stage getStageShowEmployee(){
         return stageShowEmployee;
     }
+
 
 }

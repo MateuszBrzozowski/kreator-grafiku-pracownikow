@@ -43,7 +43,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="70.0" spacing="5.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="110.0" text="Generuj" textAlignment="CENTER">
+                  <Button fx:id="buttonCreateSchedule" mnemonicParsing="false" onMouseClicked="#buttonCreateSchedule_Clicked" prefHeight="55.0" prefWidth="110.0" text="Generuj" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
