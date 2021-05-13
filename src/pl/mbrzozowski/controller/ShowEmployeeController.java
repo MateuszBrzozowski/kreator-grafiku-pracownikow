@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -15,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.mbrzozowski.modelFx.EmployeeFX;
 import pl.mbrzozowski.modelFx.EmployeeModel;
-import pl.mbrzozowski.shop.Employee;
+import pl.mbrzozowski.paths.PathToFXMLFile;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -24,8 +23,6 @@ import java.util.ResourceBundle;
 public class ShowEmployeeController {
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
 
-    private static final String EDIT_EMPLOYEE = "/fxml/editEmployee.fxml";
-    private static final String ADD_EMPLOYEE = "/fxml/addEmployee.fxml";
     private static Stage stageAddEmployee;
     private static Stage stageEditEmployee;
     private EmployeeModel employeeModel;
@@ -82,7 +79,7 @@ public class ShowEmployeeController {
 
     @FXML
     public void buttonAddEmployee_Clicked() throws IOException {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(ADD_EMPLOYEE));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(PathToFXMLFile.ADD_EMPLOYEE));
         stageAddEmployee = new Stage();
         loader.setResources(bundle);
         stageAddEmployee.setTitle(bundle.getString("title.addEmployee"));
@@ -97,7 +94,7 @@ public class ShowEmployeeController {
     public void buttonEditEmployee_Clicked(MouseEvent event) throws IOException {
         try {
             if (selectedEmployeeFX.getName()!=null){
-                FXMLLoader loader = new FXMLLoader(this.getClass().getResource(EDIT_EMPLOYEE));
+                FXMLLoader loader = new FXMLLoader(this.getClass().getResource(PathToFXMLFile.EDIT_EMPLOYEE));
                 stageEditEmployee = new Stage();
                 loader.setResources(bundle);
                 stageEditEmployee.setTitle(bundle.getString("title.editEmployee"));
@@ -108,7 +105,13 @@ public class ShowEmployeeController {
                 stageEditEmployee.show();
             }
         }catch (NullPointerException e){
-            logger.info("Nie wybrano pracownika do edycji.");
+            logger.info("Nie wybrano pracownika do edycji.",e);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Nie wybrano pracownika");
+            alert.setHeaderText("Nie wybrano żadnego pracownika");
+            alert.setContentText("Edycja pracownika jest nie możliwa. Wybierz pracownika z listy by móc edytować.\n");
+
+            alert.showAndWait();
         }
 
 
@@ -138,7 +141,13 @@ public class ShowEmployeeController {
                 }
             }
         }catch (NullPointerException e){
-            logger.info("Nie wybrano pracownika do usunięcia");
+            logger.info("Nie wybrano pracownika do usunięcia",e);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Nie wybrano pracownika");
+            alert.setHeaderText("Nie wybrano żadnego pracownika");
+            alert.setContentText("Usuwanie pracownika jest nie możliwa. Wybierz pracownika z listy by móc go usunąć.\n");
+
+            alert.showAndWait();
         }
     }
 

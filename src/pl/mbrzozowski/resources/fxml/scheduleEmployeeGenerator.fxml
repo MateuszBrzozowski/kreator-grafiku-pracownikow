@@ -12,7 +12,7 @@
          <bottom>
             <HBox alignment="CENTER_RIGHT" spacing="5.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="40.0" text="%next.generator">
+                  <Button fx:id="buttonNext" mnemonicParsing="false" onMouseClicked="#buttonNext_Clicekd" prefHeight="40.0" text="%next.generator">
                      <padding>
                         <Insets left="20.0" right="20.0" />
                      </padding>
@@ -20,7 +20,7 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" text="%back.generator">
+                  <Button fx:id="buttonCancel" mnemonicParsing="false" onMouseClicked="#buttonCancel_Clicked" prefHeight="40.0" text="%back.generator">
                      <padding>
                         <Insets left="20.0" right="20.0" />
                      </padding>

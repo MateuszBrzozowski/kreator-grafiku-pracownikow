@@ -9,13 +9,12 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.mbrzozowski.modelFx.EmployeeModel;
+import pl.mbrzozowski.paths.PathToFXMLFile;
 import pl.mbrzozowski.shop.Shop;
 
 import javafx.fxml.FXML;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MainWindowController {
@@ -25,8 +24,6 @@ public class MainWindowController {
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
     private static Stage stageShowEmployee;
     private static Stage stageScheduleEmployeeGenerator;
-    private static final String SHOW_EMPLOYEE = "/fxml/showEmployee.fxml";
-    private static final String SCHEDULE_EMPLOYEE_GENERATOR = "/fxml/scheduleEmployeeGenerator.fxml";
     private ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
 
 
@@ -42,7 +39,7 @@ public class MainWindowController {
     @FXML
     void buttonWyswietlClicked(MouseEvent event) throws IOException {
         employeeModel.init();
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(SHOW_EMPLOYEE));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(PathToFXMLFile.SHOW_EMPLOYEE));
         stageShowEmployee = new Stage();
         stageShowEmployee.setTitle(bundle.getString("title.application"));
         loader.setResources(bundle);
@@ -55,7 +52,7 @@ public class MainWindowController {
 
     @FXML
     public void buttonCreateSchedule_Clicked(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(SCHEDULE_EMPLOYEE_GENERATOR));
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource(PathToFXMLFile.SCHEDULE_EMPLOYEE_GENERATOR));
         stageScheduleEmployeeGenerator = new Stage();
         stageScheduleEmployeeGenerator.setTitle(bundle.getString("title.application"));
         loader.setResources(bundle);
