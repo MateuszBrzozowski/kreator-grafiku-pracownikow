@@ -1,18 +1,18 @@
 package pl.mbrzozowski.controller;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.mbrzozowski.helpers.PathToFXMLFile;
 import pl.mbrzozowski.modelFx.EmployeeModel;
-import pl.mbrzozowski.paths.PathToFXMLFile;
 import pl.mbrzozowski.shop.Shop;
-
-import javafx.fxml.FXML;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -29,8 +29,7 @@ public class MainWindowController {
 
     @FXML
     public void initialize(){
-        shop = new Shop("Zara");
-//        getAllEmployeFromDatabase();
+        shop = new Shop("Test");
         this.employeeModel = new EmployeeModel();
         this.employeeModel.init();
         logger.info("Aplikacja uruchomiona poprawnie");
@@ -60,9 +59,10 @@ public class MainWindowController {
         Scene scene =  new Scene(root);
         stageScheduleEmployeeGenerator.setScene(scene);
         stageScheduleEmployeeGenerator.initModality(Modality.APPLICATION_MODAL);
+        stageScheduleEmployeeGenerator.initStyle(StageStyle.UNIFIED);
         stageScheduleEmployeeGenerator.show();
     }
-    
+
     public static Stage getStageScheduleEmployeeGenerator(){ return stageScheduleEmployeeGenerator;}
 
     public static EmployeeModel getEmployeeModel() {

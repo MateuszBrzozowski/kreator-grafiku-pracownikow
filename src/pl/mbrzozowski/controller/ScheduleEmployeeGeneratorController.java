@@ -4,12 +4,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.mbrzozowski.helpers.PathToFXMLFile;
+import pl.mbrzozowski.modelFx.ScheduleEmployeeGeneratorModel;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -18,10 +20,18 @@ import java.util.ResourceBundle;
 public class ScheduleEmployeeGeneratorController {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
+    private static ScheduleEmployeeGeneratorModel scheduleEmployeeGeneratorModel;
+
+    @FXML
+    private BorderPane borderPane;
+    @FXML
+    public Button buttonNext;
 
 
     @FXML
     public void initialize(){
+        scheduleEmployeeGeneratorModel = new ScheduleEmployeeGeneratorModel(buttonNext,this);
+        setCenter(PathToFXMLFile.CHOOSE_MONTH);
 
     }
 
@@ -30,7 +40,7 @@ public class ScheduleEmployeeGeneratorController {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Anulować?");
         alert.setHeaderText("Czy jesteś pewnien, że chcesz przerwać generwoanie grafiku?");
-        alert.setContentText("Po anulowaniu wszystkie wprowadzone dane zostaną utracone i nie będzie możliwości ich odzyskanie\n\n\n");
+        alert.setContentText("Po anulowaniu wszystkie wprowadzone dane zostaną utracone i nie będzie możliwości ich odzyskanie\n\n");
 
 
         ButtonType buttonTypeYes = new ButtonType("Tak");
@@ -52,17 +62,26 @@ public class ScheduleEmployeeGeneratorController {
 
     @FXML
     public void buttonNext_Clicekd() {
+
     }
 
-    public void setDialog(String fxmlPath){
+    public static ScheduleEmployeeGeneratorModel getScheduleEmployeeGeneratorModel() {
+        return scheduleEmployeeGeneratorModel;
+    }
+
+    public void setCenter(String fxmlPath){
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource(fxmlPath));
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
         loader.setResources(bundle);
+        Parent root = null;
         try {
-            Parent root = loader.load();
+            root = loader.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(String.valueOf(e));
         }
+        borderPane.setCenter(root);
+        borderPane.setPrefSize(BorderPane.USE_COMPUTED_SIZE,BorderPane.USE_COMPUTED_SIZE);
+
     }
 
 

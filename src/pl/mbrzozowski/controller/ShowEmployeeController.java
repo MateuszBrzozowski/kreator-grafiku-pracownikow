@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.mbrzozowski.modelFx.EmployeeFX;
 import pl.mbrzozowski.modelFx.EmployeeModel;
-import pl.mbrzozowski.paths.PathToFXMLFile;
+import pl.mbrzozowski.helpers.PathToFXMLFile;
 
 import java.io.IOException;
 import java.util.Optional;

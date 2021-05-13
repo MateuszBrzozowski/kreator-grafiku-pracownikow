@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mbrzozowski.controller.ChooseMonthController">
+<AnchorPane prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mbrzozowski.controller.ChooseMonthController">
    <children>
-      <HBox alignment="CENTER_LEFT" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%choose.month" />
-            <ChoiceBox fx:id="chooiceBoxMonth" prefWidth="150.0" />
-            <ChoiceBox fx:id="chooiceBoxYear" prefWidth="100.0" />
+            <ComboBox fx:id="comboBoxMonth" onAction="#comboBoxCheck_onAction" prefWidth="150.0" promptText="%name.month" />
+            <ComboBox fx:id="comboBoxYear" onAction="#comboBoxCheck_onAction" prefWidth="100.0" promptText="%name.year" />
          </children>
       </HBox>
    </children>
