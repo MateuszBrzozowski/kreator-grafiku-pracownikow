@@ -7,7 +7,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.mbrzozowski.helpers.PathToFXMLFile;
@@ -21,9 +23,13 @@ public class ScheduleEmployeeGeneratorController {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
     private static ScheduleEmployeeGeneratorModel scheduleEmployeeGeneratorModel;
+    private Stage stageScheduleEmployeeGenerator;
+    private int statusGenerator=1;
 
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private AnchorPane anchorPane;
     @FXML
     public Button buttonNext;
 
@@ -31,8 +37,9 @@ public class ScheduleEmployeeGeneratorController {
     @FXML
     public void initialize(){
         scheduleEmployeeGeneratorModel = new ScheduleEmployeeGeneratorModel(buttonNext,this);
+        stageScheduleEmployeeGenerator = MainWindowController.getStageScheduleEmployeeGenerator();
         setCenter(PathToFXMLFile.CHOOSE_MONTH);
-
+        borderPane.setPrefSize(BorderPane.USE_COMPUTED_SIZE,BorderPane.USE_COMPUTED_SIZE);
     }
 
     @FXML
@@ -62,7 +69,18 @@ public class ScheduleEmployeeGeneratorController {
 
     @FXML
     public void buttonNext_Clicekd() {
-
+        switch (statusGenerator){
+            case 1 -> {
+                setCenter(PathToFXMLFile.CHOOSE_OPEN_TIME);
+                stageScheduleEmployeeGenerator.close();
+                stageScheduleEmployeeGenerator.show();
+                statusGenerator++;
+            }
+            default -> {
+                logger.error("Status generatora nie prawidłowy");
+                throw new IllegalStateException("Unexpected value: " + statusGenerator);
+            }
+        }
     }
 
     public static ScheduleEmployeeGeneratorModel getScheduleEmployeeGeneratorModel() {
@@ -80,8 +98,7 @@ public class ScheduleEmployeeGeneratorController {
             logger.error(String.valueOf(e));
         }
         borderPane.setCenter(root);
-        borderPane.setPrefSize(BorderPane.USE_COMPUTED_SIZE,BorderPane.USE_COMPUTED_SIZE);
-
+        borderPane.setPrefSize(BorderPane.USE_COMPUTED_SIZE, BorderPane.USE_COMPUTED_SIZE);
     }
 
 

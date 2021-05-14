@@ -8,5 +8,6 @@ public class PathToFXMLFile {
     public static final String ADD_EMPLOYEE = "/fxml/addEmployee.fxml";
     public static final String MAIN_WINDOW = "/fxml/mainWindow.fxml";
     public static final String CHOOSE_MONTH = "/fxml/chooseMonth.fxml";
+    public static final String CHOOSE_OPEN_TIME = "/fxml/chooseOpenTime.fxml";
 
 }

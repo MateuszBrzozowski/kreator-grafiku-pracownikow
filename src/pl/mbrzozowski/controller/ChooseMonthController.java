@@ -50,7 +50,6 @@ public class ChooseMonthController {
 
     }
 
-
     private void putToTablePlusTenYears(int year) {
         for (int i=0 ; i<10 ; i++){
             yearName[i] = year;
@@ -59,13 +58,17 @@ public class ChooseMonthController {
     }
 
     public void comboBoxCheck_onAction(ActionEvent actionEvent) {
-        Converter converter = new Converter();
-        int monthInt = converter.stringToInt(comboBoxMonth.getValue());
+
 
         if (comboBoxMonth.getValue()!=null && comboBoxYear.getValue()!=null){
+            Converter converter = new Converter();
+            int monthInt = converter.stringToInt(comboBoxMonth.getValue());
+
             if (comboBoxYear.getValue()==year && monthInt>=month){
                 scheduleEmployeeGeneratorModel.setIsNotDisableButtonNext(true);
-            }else {
+            }else if (comboBoxYear.getValue()>year){
+                scheduleEmployeeGeneratorModel.setIsNotDisableButtonNext(true);
+            } else {
                 scheduleEmployeeGeneratorModel.setIsNotDisableButtonNext(false);
             }
         }else {
