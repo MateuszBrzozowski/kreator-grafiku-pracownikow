@@ -9,5 +9,6 @@ public class PathToFXMLFile {
     public static final String MAIN_WINDOW = "/fxml/mainWindow.fxml";
     public static final String CHOOSE_MONTH = "/fxml/chooseMonth.fxml";
     public static final String CHOOSE_OPEN_TIME = "/fxml/chooseOpenTime.fxml";
-
+    public static final String CHOOSE_WORKING_DAY = "/fxml/chooseWorkingDay.fxml";
+    public static final String STYLE_CSS = "/fxml/style.css";
 }

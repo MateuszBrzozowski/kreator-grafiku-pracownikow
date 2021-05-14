@@ -1,5 +1,6 @@
 package pl.mbrzozowski.controller;
 
+import javafx.css.Stylesheet;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -72,6 +73,12 @@ public class ScheduleEmployeeGeneratorController {
         switch (statusGenerator){
             case 1 -> {
                 setCenter(PathToFXMLFile.CHOOSE_OPEN_TIME);
+                stageScheduleEmployeeGenerator.close();
+                stageScheduleEmployeeGenerator.show();
+                statusGenerator++;
+            }
+            case 2 -> {
+                setCenter(PathToFXMLFile.CHOOSE_WORKING_DAY);
                 stageScheduleEmployeeGenerator.close();
                 stageScheduleEmployeeGenerator.show();
                 statusGenerator++;

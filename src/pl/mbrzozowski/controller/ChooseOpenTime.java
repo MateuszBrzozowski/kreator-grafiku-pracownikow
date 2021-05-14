@@ -15,6 +15,8 @@ import java.util.List;
 
 public class ChooseOpenTime {
 
+    //TODO przekazać informację do Modelu jakie dni jakie godziny -poniedzialek -8-16 itd.
+
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
     private ScheduleEmployeeGeneratorModel scheduleEmployeeGeneratorModel;
     private String[] hour = new String[24];

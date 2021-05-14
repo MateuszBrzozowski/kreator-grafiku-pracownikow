@@ -1,0 +1,28 @@
+.buttonChangeAll{
+	-fx-background-color: #479191;
+	-fx-background-radius:1px;
+}
+
+.buttonDay{
+	-fx-pref-height:98px;
+	-fx-pref-width: 149;
+	-fx-background-radius:1px;
+}
+
+.buttonDayClose {
+	-fx-background-color: #FFC9C9;
+}
+
+.buttonDayOpen {
+	-fx-background-color: #BAECBA;
+	
+}
+
+.buttonNoActive {
+	
+	-fx-background-color: #DDDDDD;
+}
+
+.textNameDay {
+	
+}

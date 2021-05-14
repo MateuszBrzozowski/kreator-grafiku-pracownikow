@@ -13,8 +13,10 @@ public class ScheduleEmployeeGeneratorModel {
 
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
     private ScheduleEmployeeGeneratorController scheduleEmployeeGeneratorController;
-
     private BooleanProperty isDisableButtonNext = new SimpleBooleanProperty();
+
+    private String month;
+    private Integer year;
 
     public ScheduleEmployeeGeneratorModel(Button button, ScheduleEmployeeGeneratorController controller) {
         scheduleEmployeeGeneratorController = controller;
@@ -34,4 +36,19 @@ public class ScheduleEmployeeGeneratorModel {
         this.isDisableButtonNext.set(isDisableButtonNext);
     }
 
+    public void setMonth(String value) {
+        this.month = value;
+    }
+
+    public void setYear(Integer value) {
+        this.year = value;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
 }
