@@ -59,12 +59,7 @@ public class ScheduleEmployeeGeneratorController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeYes){
-            //TODO Anulowanie generowania grafiku - przerwij akcję
-            logger.info("Yes");
-
-        }else{
-            //TODO - anulowanie anulowania generowania grafiku
-            logger.info("Anulowano");
+            stageScheduleEmployeeGenerator.close();
         }
     }
 
@@ -78,6 +73,7 @@ public class ScheduleEmployeeGeneratorController {
                 statusGenerator++;
             }
             case 2 -> {
+                //TODO Jeżeli godziny zamknięcia są mniejsze od godzien otwarcia nie możemy pójść dalej - nie logiczne.
                 setCenter(PathToFXMLFile.CHOOSE_WORKING_DAY);
                 stageScheduleEmployeeGenerator.close();
                 stageScheduleEmployeeGenerator.show();

@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mbrzozowski.controller.ChooseWorkingDayController">
    <children>
       <VBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -59,255 +58,256 @@
                   <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="5.0" scaleX="0.6" styleClass="buttonChangeAll" GridPane.rowIndex="5" />
                   <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="5.0" scaleX="0.6" styleClass="buttonChangeAll" GridPane.rowIndex="6" />
                   <Button mnemonicParsing="false" prefHeight="95.0" prefWidth="5.0" scaleX="0.6" styleClass="buttonChangeAll" GridPane.rowIndex="7" />
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Button fx:id="dayOfMonth_01" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <styleClass>
+                        <String fx:value="buttonDayOpen" />
+                        <String fx:value="buttonDay" />
+                        <String fx:value="buttonNoActive" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="dayOfMonth_02" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Button fx:id="dayOfMonth_03" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <Button fx:id="dayOfMonth_04" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                  <Button fx:id="dayOfMonth_05" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                  <Button fx:id="dayOfMonth_06" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                  <Button fx:id="dayOfMonth_08" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Button fx:id="dayOfMonth_09" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                  <Button fx:id="dayOfMonth_10" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                  <Button fx:id="dayOfMonth_11" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                  <Button fx:id="dayOfMonth_12" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                  <Button fx:id="dayOfMonth_13" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="3">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
-                     <styleClass>
-                        <String fx:value="buttonDayOpen" />
-                        <String fx:value="buttonDay" />
-                     </styleClass>
-                  </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="7" GridPane.rowIndex="3">
+                  <Button fx:id="dayOfMonth_14" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="7" GridPane.rowIndex="3">
                      <styleClass>
                         <String fx:value="buttonDayClose" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="7" GridPane.rowIndex="2">
+                  <Button fx:id="dayOfMonth_07" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="7" GridPane.rowIndex="2">
                      <styleClass>
                         <String fx:value="buttonDayClose" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Button fx:id="dayOfMonth_15" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                  <Button fx:id="dayOfMonth_16" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                  <Button fx:id="dayOfMonth_17" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                  <Button fx:id="dayOfMonth_18" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                  <Button fx:id="dayOfMonth_19" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                  <Button fx:id="dayOfMonth_20" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" text="5" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.rowIndex="4">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
+                  <Button fx:id="dayOfMonth_21" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
                      <styleClass>
                         <String fx:value="buttonDayClose" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                  <Button fx:id="dayOfMonth_22" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                  <Button fx:id="dayOfMonth_23" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                  <Button fx:id="dayOfMonth_24" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                  <Button fx:id="dayOfMonth_25" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                  <Button fx:id="dayOfMonth_26" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
+                  <Button fx:id="dayOfMonth_27" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="7" GridPane.rowIndex="5">
+                  <Button fx:id="dayOfMonth_28" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="7" GridPane.rowIndex="5">
                      <styleClass>
                         <String fx:value="buttonDayClose" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                  <Button fx:id="dayOfMonth_29" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                  <Button fx:id="dayOfMonth_30" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                  <Button fx:id="dayOfMonth_31" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                  <Button fx:id="dayOfMonth_32" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="5" GridPane.rowIndex="6">
+                  <Button fx:id="dayOfMonth_33" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="5" GridPane.rowIndex="6">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="6" GridPane.rowIndex="6">
+                  <Button fx:id="dayOfMonth_34" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="6" GridPane.rowIndex="6">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="7" GridPane.rowIndex="6">
+                  <Button fx:id="dayOfMonth_35" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="7" GridPane.rowIndex="6">
                      <styleClass>
                         <String fx:value="buttonDayClose" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                  <Button fx:id="dayOfMonth_36" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                  <Button fx:id="dayOfMonth_37" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                  <Button fx:id="dayOfMonth_38" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="3" GridPane.rowIndex="7">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                  <Button fx:id="dayOfMonth_39" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="4" GridPane.rowIndex="7">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="5" GridPane.rowIndex="7">
+                  <Button fx:id="dayOfMonth_40" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="5" GridPane.rowIndex="7">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="6" GridPane.rowIndex="7">
+                  <Button fx:id="dayOfMonth_41" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="6" GridPane.rowIndex="7">
                      <styleClass>
                         <String fx:value="buttonDayOpen" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="7" GridPane.rowIndex="7">
+                  <Button fx:id="dayOfMonth_42" mnemonicParsing="false" prefHeight="90.0" prefWidth="140.0" GridPane.columnIndex="7" GridPane.rowIndex="7">
                      <styleClass>
-                        <String fx:value="buttonDayClose" />
+                        <String fx:value="buttonNoActive" />
                         <String fx:value="buttonDay" />
                      </styleClass>
                   </Button>

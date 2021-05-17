@@ -123,8 +123,6 @@ public class ShowEmployeeController {
 
     @FXML
     public void buttonDeleteEmployee_Clicked() {
-        //TODO Usuwanie pracownika - pobiera dane pracownika z zaznaczonego z TableView - pyta czy na pewno usunac
-        //i usuwa pracownika z EmployeModel a potem z bazy danych
         try {
             if (selectedEmployeeFX.getName()!=null){
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

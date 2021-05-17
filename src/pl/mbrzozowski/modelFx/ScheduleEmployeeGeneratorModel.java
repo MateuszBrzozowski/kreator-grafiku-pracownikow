@@ -15,7 +15,7 @@ public class ScheduleEmployeeGeneratorModel {
     private ScheduleEmployeeGeneratorController scheduleEmployeeGeneratorController;
     private BooleanProperty isDisableButtonNext = new SimpleBooleanProperty();
 
-    private String month;
+    private Integer month;
     private Integer year;
 
     public ScheduleEmployeeGeneratorModel(Button button, ScheduleEmployeeGeneratorController controller) {
@@ -36,7 +36,7 @@ public class ScheduleEmployeeGeneratorModel {
         this.isDisableButtonNext.set(isDisableButtonNext);
     }
 
-    public void setMonth(String value) {
+    public void setMonth(Integer value) {
         this.month = value;
     }
 
@@ -44,7 +44,7 @@ public class ScheduleEmployeeGeneratorModel {
         this.year = value;
     }
 
-    public String getMonth() {
+    public Integer getMonth() {
         return month;
     }
 

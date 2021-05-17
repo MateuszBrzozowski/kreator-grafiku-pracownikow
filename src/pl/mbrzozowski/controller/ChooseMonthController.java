@@ -58,12 +58,12 @@ public class ChooseMonthController {
     }
 
     public void comboBoxCheck_onAction(ActionEvent actionEvent) {
-        scheduleEmployeeGeneratorModel.setMonth(comboBoxMonth.getValue());
-        scheduleEmployeeGeneratorModel.setYear(comboBoxYear.getValue());
-
         if (comboBoxMonth.getValue()!=null && comboBoxYear.getValue()!=null){
             Converter converter = new Converter();
             int monthInt = converter.stringToInt(comboBoxMonth.getValue());
+
+            scheduleEmployeeGeneratorModel.setMonth(monthInt);
+            scheduleEmployeeGeneratorModel.setYear(comboBoxYear.getValue());
 
             if (comboBoxYear.getValue()==year && monthInt>=month){
                 scheduleEmployeeGeneratorModel.setIsNotDisableButtonNext(true);

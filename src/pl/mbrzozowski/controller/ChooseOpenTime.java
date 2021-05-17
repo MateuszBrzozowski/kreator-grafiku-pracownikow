@@ -136,6 +136,9 @@ public class ChooseOpenTime {
         for (int i = 0; i < comboBoxesHour.size(); i++) {
             comboBoxesHour.get(i).getItems().addAll(hour);
             comboBoxesHour.get(i).setValue("08");
+            if (i%2==1){
+                comboBoxesHour.get(i).setValue("22");
+            }
         }
 
         for (int i = 0; i < comboBoxesMinute.size(); i++) {
