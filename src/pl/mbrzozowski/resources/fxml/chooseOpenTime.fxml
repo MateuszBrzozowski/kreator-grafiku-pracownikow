@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="450.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mbrzozowski.controller.ChooseOpenTime">
+<AnchorPane prefHeight="450.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mbrzozowski.controller.ChooseOpenTimeController">
    <children>
       <VBox layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -73,86 +73,86 @@
                   </HBox>
                   <HBox alignment="CENTER" spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <ComboBox fx:id="comboBoxMondayHour" prefWidth="60.0" />
-                        <ComboBox fx:id="comboBoxMondayMinute" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxMondayHour" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxMondayMinute" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <children>
-                        <ComboBox fx:id="comboBoxMondayHourTo" prefWidth="60.0" />
-                        <ComboBox fx:id="comboBoxMondayMinuteTo" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxMondayHourTo" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxMondayMinuteTo" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <ComboBox fx:id="comboBoxTuesdayHour" prefWidth="60.0" />
-                        <ComboBox fx:id="comboBoxTuesdayMinute" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxTuesdayHour" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxTuesdayMinute" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                      <children>
-                        <ComboBox fx:id="comboBoxTuesdayHourTo" prefWidth="60.0" />
-                        <ComboBox fx:id="comboBoxTuesdayMinuteTo" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxTuesdayHourTo" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxTuesdayMinuteTo" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <children>
-                        <ComboBox fx:id="comboBoxWednesdayHour" prefWidth="60.0" />
-                        <ComboBox fx:id="comboBoxWednesdayMinute" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxWednesdayHour" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxWednesdayMinute" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <children>
-                        <ComboBox fx:id="comboBoxWednesdayHourTo" prefWidth="60.0" />
-                        <ComboBox fx:id="comboBoxWednesdayMinuteTo" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxWednesdayHourTo" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxWednesdayMinuteTo" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
-                        <ComboBox fx:id="comboBoxThursdayHour" prefWidth="60.0" />
-                        <ComboBox fx:id="comboBoxThursdayMinute" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxThursdayHour" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxThursdayMinute" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                      <children>
-                        <ComboBox fx:id="comboBoxThursdayHourTo" prefWidth="60.0" />
-                        <ComboBox fx:id="comboBoxThursdayMinuteTo" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxThursdayHourTo" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxThursdayMinuteTo" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                      <children>
-                        <ComboBox fx:id="comboBoxFridayHour" prefWidth="60.0" />
-                        <ComboBox fx:id="comboBoxFridayMinute" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxFridayHour" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxFridayMinute" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                      <children>
-                        <ComboBox fx:id="comboBoxFridayHourTo" prefWidth="60.0" />
-                        <ComboBox fx:id="comboBoxFridayMinuteTo" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxFridayHourTo" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxFridayMinuteTo" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                      <children>
-                        <ComboBox fx:id="comboBoxSaturdayHour" prefWidth="60.0" />
-                        <ComboBox fx:id="comboBoxSaturdayMinute" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxSaturdayHour" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxSaturdayMinute" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="7">
                      <children>
-                        <ComboBox fx:id="comboBoxSaturdayHourTo" prefWidth="60.0" />
-                        <ComboBox fx:id="comboBoxSaturdayMinuteTo" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxSaturdayHourTo" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxSaturdayMinuteTo" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="2.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                      <children>
-                        <ComboBox fx:id="comboBoxSundayHour" prefWidth="60.0" />
-                        <ComboBox fx:id="comboBoxSundayMinute" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxSundayHour" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxSundayMinute" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="2.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
                      <children>
-                        <ComboBox fx:id="comboBoxSundayHourTo" prefWidth="60.0" />
-                        <ComboBox fx:id="comboBoxSundayMinuteTo" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxSundayHourTo" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
+                        <ComboBox fx:id="comboBoxSundayMinuteTo" onAction="#comboBoxHour_OnAction" prefWidth="60.0" />
                      </children>
                   </HBox>
                </children>

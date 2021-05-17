@@ -73,7 +73,6 @@ public class ScheduleEmployeeGeneratorController {
                 statusGenerator++;
             }
             case 2 -> {
-                //TODO Jeżeli godziny zamknięcia są mniejsze od godzien otwarcia nie możemy pójść dalej - nie logiczne.
                 setCenter(PathToFXMLFile.CHOOSE_WORKING_DAY);
                 stageScheduleEmployeeGenerator.close();
                 stageScheduleEmployeeGenerator.show();

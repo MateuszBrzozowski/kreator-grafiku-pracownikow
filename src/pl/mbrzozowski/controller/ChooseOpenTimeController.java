@@ -3,17 +3,14 @@ package pl.mbrzozowski.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
-import javafx.scene.input.MouseEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.mbrzozowski.modelFx.ScheduleEmployeeGeneratorModel;
 
-import java.awt.image.AreaAveragingScaleFilter;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ChooseOpenTime {
+public class ChooseOpenTimeController {
 
     //TODO przekazać informację do Modelu jakie dni jakie godziny -poniedzialek -8-16 itd.
 
@@ -86,6 +83,8 @@ public class ChooseOpenTime {
     private ComboBox<String> comboBoxSundayHourTo;
     @FXML
     private ComboBox<String> comboBoxSundayMinuteTo;
+    private List<ComboBox> comboBoxesHour = new LinkedList<>();
+    private List<ComboBox> comboBoxesMinute = new LinkedList<>();
 
 
     @FXML
@@ -93,11 +92,9 @@ public class ChooseOpenTime {
         scheduleEmployeeGeneratorModel = ScheduleEmployeeGeneratorController.getScheduleEmployeeGeneratorModel();
         fillTableHourAndMinute();
         fillComboBoxes();
-
     }
 
     private void fillComboBoxes() {
-        List<ComboBox> comboBoxesHour = new LinkedList<>();
         comboBoxesHour.add(comboBoxMainHour);
         comboBoxesHour.add(comboBoxMainHourTo);
         comboBoxesHour.add(comboBoxMondayHour);
@@ -115,7 +112,6 @@ public class ChooseOpenTime {
         comboBoxesHour.add(comboBoxSundayHour);
         comboBoxesHour.add(comboBoxSundayHourTo);
 
-        List<ComboBox> comboBoxesMinute = new LinkedList<>();
         comboBoxesMinute.add(comboBoxMainMinute);
         comboBoxesMinute.add(comboBoxMainMinuteTo);
         comboBoxesMinute.add(comboBoxMondayMinute);
@@ -220,5 +216,31 @@ public class ChooseOpenTime {
         comboBoxFridayMinuteTo.setValue(value);
         comboBoxSaturdayMinuteTo.setValue(value);
         comboBoxSundayMinuteTo.setValue(value);
+    }
+
+    @FXML
+    public void comboBoxHour_OnAction(ActionEvent actionEvent) {
+        //Czy wybrane godziny maja sens.
+        for (int i = 2; i < comboBoxesHour.size(); i+=2) {
+            if (Integer.parseInt(comboBoxesHour.get(i).getValue().toString())<Integer.parseInt(comboBoxesHour.get(i+1).getValue().toString())){
+                //jest ok - odblokowac button next
+                scheduleEmployeeGeneratorModel.setIsNotDisableButtonNext(true);
+            }else if (Integer.parseInt(comboBoxesHour.get(i).getValue().toString())>Integer.parseInt(comboBoxesHour.get(i+1).getValue().toString())){
+                //nie ok - zablkoować button next
+                scheduleEmployeeGeneratorModel.setIsNotDisableButtonNext(false);
+                break;
+            }else{
+                //rowne godziny wiec sprawdzamy minuty
+                logger.info("{} {}",Integer.parseInt(comboBoxesMinute.get(i).getValue().toString()),Integer.parseInt(comboBoxesMinute.get(i+1).getValue().toString()));
+                if (Integer.parseInt(comboBoxesMinute.get(i).getValue().toString())>=Integer.parseInt(comboBoxesMinute.get(i+1).getValue().toString())){
+                    logger.info("false");
+                    scheduleEmployeeGeneratorModel.setIsNotDisableButtonNext(false);
+                    break;
+                }else {
+                    logger.info("true");
+                    scheduleEmployeeGeneratorModel.setIsNotDisableButtonNext(true);
+                }
+            }
+        }
     }
 }
