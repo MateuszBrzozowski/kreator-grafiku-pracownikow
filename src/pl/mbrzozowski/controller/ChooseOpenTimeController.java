@@ -6,7 +6,9 @@ import javafx.scene.control.ComboBox;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.mbrzozowski.modelFx.ScheduleEmployeeGeneratorModel;
+import pl.mbrzozowski.shop.DayOfWeekMy;
 
+import java.time.LocalTime;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -92,6 +94,7 @@ public class ChooseOpenTimeController {
         scheduleEmployeeGeneratorModel = ScheduleEmployeeGeneratorController.getScheduleEmployeeGeneratorModel();
         fillTableHourAndMinute();
         fillComboBoxes();
+        saveAllDay();
     }
 
     private void fillComboBoxes() {
@@ -241,6 +244,26 @@ public class ChooseOpenTimeController {
                     scheduleEmployeeGeneratorModel.setIsNotDisableButtonNext(true);
                 }
             }
+        }
+        if (scheduleEmployeeGeneratorModel.getIsDisableButtonNext()==true){
+            saveAllDay();
+        }
+    }
+
+    public void saveAllDay(){
+        int j=0;
+        for (int i = 2; i < comboBoxesHour.size(); i+=2) {
+            int hourFrom = Integer.parseInt(comboBoxesHour.get(i).getValue().toString());
+            int minuteFrom = Integer.parseInt(comboBoxesMinute.get(i).getValue().toString());
+            int hourTo = Integer.parseInt(comboBoxesHour.get(i+1).getValue().toString());
+            int minuteTo = Integer.parseInt(comboBoxesMinute.get(i+1).getValue().toString());
+//            logger.info("{}:{} - {}:{}",hourFrom,minuteFrom,hourTo,minuteTo);
+            LocalTime localTimeFrom = LocalTime.of(hourFrom,minuteFrom);
+            LocalTime localTimeTo = LocalTime.of(hourTo,minuteTo);
+//            logger.info("{} - {}", localTimeFrom,localTimeTo);
+            DayOfWeekMy day = new DayOfWeekMy(localTimeFrom,localTimeTo);
+            scheduleEmployeeGeneratorModel.setDayOfWeekMy(j,day);
+            j++;
         }
     }
 }

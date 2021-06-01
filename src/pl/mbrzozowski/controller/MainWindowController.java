@@ -51,6 +51,7 @@ public class MainWindowController {
 
     @FXML
     public void buttonCreateSchedule_Clicked(MouseEvent event) throws IOException {
+        employeeModel.init();
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource(PathToFXMLFile.SCHEDULE_EMPLOYEE_GENERATOR));
         stageScheduleEmployeeGenerator = new Stage();
         stageScheduleEmployeeGenerator.setTitle(bundle.getString("title.application"));

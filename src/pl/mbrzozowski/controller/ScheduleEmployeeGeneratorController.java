@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.mbrzozowski.helpers.PathToFXMLFile;
+import pl.mbrzozowski.modelFx.EmployeeModel;
 import pl.mbrzozowski.modelFx.ScheduleEmployeeGeneratorModel;
 
 import java.io.IOException;
@@ -41,6 +42,7 @@ public class ScheduleEmployeeGeneratorController {
         stageScheduleEmployeeGenerator = MainWindowController.getStageScheduleEmployeeGenerator();
         setCenter(PathToFXMLFile.CHOOSE_MONTH);
         borderPane.setPrefSize(BorderPane.USE_COMPUTED_SIZE,BorderPane.USE_COMPUTED_SIZE);
+
     }
 
     @FXML
@@ -77,6 +79,9 @@ public class ScheduleEmployeeGeneratorController {
                 stageScheduleEmployeeGenerator.close();
                 stageScheduleEmployeeGenerator.show();
                 statusGenerator++;
+            }
+            case 3 -> {
+
             }
             default -> {
                 logger.error("Status generatora nie prawidłowy");
