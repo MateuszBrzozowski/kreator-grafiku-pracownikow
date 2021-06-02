@@ -16,6 +16,10 @@ import java.time.LocalTime;
 
 public class ScheduleEmployeeGeneratorModel {
 
+    //TODO Stworzyc grafik dla każdego pracownika
+    //TODO ile godzin w danym miesiacu ma przepracowac pracownik - pelny etat
+    //
+
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
     private ScheduleEmployeeGeneratorController scheduleEmployeeGeneratorController;
     private BooleanProperty isDisableButtonNext = new SimpleBooleanProperty();
@@ -126,5 +130,23 @@ public class ScheduleEmployeeGeneratorModel {
 
     public void setDayOfMonth(int index, boolean isWorkingDay){
         daysOfMonth[index].setWorkingDay(isWorkingDay);
+    }
+
+    public void createSchedule(){
+        int fullTime = fullTimeHowManyHour();
+    }
+
+    private int fullTimeHowManyHour() {
+        int sum=0;
+        for (int i = 0; i < daysOfMonth.length; i++) {
+            DayOfWeek d = daysOfMonth[i].getDayOfWeek();
+            if (d.getValue()!=6 && d.getValue()!=7){
+                if (daysOfMonth[i].isWorkingDay()){
+                    sum+=8;
+                }
+            }
+        }
+        logger.info(String.valueOf(sum));
+        return sum;
     }
 }

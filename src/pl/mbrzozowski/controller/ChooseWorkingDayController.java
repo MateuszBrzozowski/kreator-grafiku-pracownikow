@@ -13,8 +13,6 @@ import java.util.List;
 
 public class ChooseWorkingDayController {
 
-    //TODO przekazac do modelu ktory dzien miesia jest otwarty.
-
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
     private ScheduleEmployeeGeneratorModel scheduleEmployeeGeneratorModel;
 

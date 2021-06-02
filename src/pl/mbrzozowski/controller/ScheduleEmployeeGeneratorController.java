@@ -81,7 +81,7 @@ public class ScheduleEmployeeGeneratorController {
                 statusGenerator++;
             }
             case 3 -> {
-
+                scheduleEmployeeGeneratorModel.createSchedule();
             }
             default -> {
                 logger.error("Status generatora nie prawidłowy");

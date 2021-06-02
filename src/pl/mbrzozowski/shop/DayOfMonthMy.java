@@ -40,4 +40,12 @@ public class DayOfMonthMy {
     public void showDay(){
         logger.info("{} - Pracujący?: {}; od - {} - do {}",dayOfWeek,isWorkingDay,timeFrom,timeTo);
     }
+
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    public boolean isWorkingDay() {
+        return isWorkingDay;
+    }
 }
