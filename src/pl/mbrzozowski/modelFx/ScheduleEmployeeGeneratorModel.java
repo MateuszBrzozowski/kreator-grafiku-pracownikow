@@ -18,7 +18,6 @@ public class ScheduleEmployeeGeneratorModel {
 
     //TODO Stworzyc grafik dla każdego pracownika
     //TODO ile godzin w danym miesiacu ma przepracowac pracownik - pelny etat
-    //
 
     protected final Logger logger = LoggerFactory.getLogger(getClass().getName());
     private ScheduleEmployeeGeneratorController scheduleEmployeeGeneratorController;
@@ -134,6 +133,7 @@ public class ScheduleEmployeeGeneratorModel {
 
     public void createSchedule(){
         int fullTime = fullTimeHowManyHour();
+
     }
 
     private int fullTimeHowManyHour() {
