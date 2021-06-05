@@ -26,30 +26,29 @@ public class EmployeeModel {
         List<Employee> employeeLinkedList = new LinkedList<>();
         this.employeeList.clear();
 
-        while (true){
-            try {
-                if (!resultSet.next()) break;
-                else {
-                    int id = resultSet.getInt("ID");
-                    String name = resultSet.getString("employee.name");
-                    String surname = resultSet.getString("employee.surname");
-                    int sizeTime = resultSet.getInt("sizeTime");
-                    String position = resultSet.getString("position");
-                    Employee employee = new Employee(id,name,surname,sizeTime,position);
-                    employeeLinkedList.add(employee);
+        if (resultSet!=null){
+            while (true){
+                try {
+                    if (!resultSet.next()) break;
+                    else {
+                        int id = resultSet.getInt("ID");
+                        String name = resultSet.getString("employee.name");
+                        String surname = resultSet.getString("employee.surname");
+                        int sizeTime = resultSet.getInt("sizeTime");
+                        String position = resultSet.getString("position");
+                        Employee employee = new Employee(id,name,surname,sizeTime,position);
+                        employeeLinkedList.add(employee);
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
                 }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
             }
-
+            employeeLinkedList.forEach(e -> {
+                EmployeeFX employeeFX = new EmployeeFX(e.getId(),e.getName(),e.getSurname(),e.getSizeTime(),e.getPosition());
+                this.employeeList.add(employeeFX);
+            });
         }
-        logger.info("Pobrano pracowników");
-        employeeLinkedList.forEach(e -> {
-            EmployeeFX employeeFX = new EmployeeFX(e.getId(),e.getName(),e.getSurname(),e.getSizeTime(),e.getPosition());
-            this.employeeList.add(employeeFX);
 
-        });
-        logger.info("Załadowo bazę danych do aplikacji");
     }
 
     public void addEmployeeToDatabase(String name, String surname, int sizeTime, String position){
@@ -67,7 +66,19 @@ public class EmployeeModel {
     public ResultSet getAllEmployeeFromDataBase(){
         String query = "SELECT * FROM `employee`";
         DBConnector dbConnector = new DBConnector();
-        ResultSet resultSet = dbConnector.executeSelect(query);
+        ResultSet resultSet = null;
+        try{
+           resultSet = dbConnector.executeSelect(query);
+        }catch (Exception e){
+            logger.error("Brak tabeli employee w bazie danych. -> Tworze tabele");
+            String queryCreate ="CREATE TABLE employee(" +
+                    "id INT(5)  UNSIGNED AUTO_INCREMENT PRIMARY KEY," +
+                    "name VARCHAR(30) NOT NULL," +
+                    "surname VARCHAR(30) NOT NULL," +
+                    "sizeTime INT(5)," +
+                    "position VARCHAR(30))";
+            dbConnector.executeQuery(queryCreate);
+        }
         return resultSet;
     }
 

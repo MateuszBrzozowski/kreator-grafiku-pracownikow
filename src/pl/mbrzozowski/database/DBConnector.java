@@ -27,7 +27,6 @@ public class DBConnector {
         connection=connect();
         try {
             Statement statement = connection.createStatement();
-            logger.info("Zapytanie do bazy danych zakończone powodzeniem");
             return statement.executeQuery(selectQuery);
         } catch (SQLException throwables) {
             logger.error("Zapytanie do bazy danych zakończone niepowodzeniem");
@@ -39,7 +38,6 @@ public class DBConnector {
         connection=connect();
         try {
             Statement statement = connection.createStatement();
-            logger.info("Zapytanie do bazy danych zakończone powodzeniem");
             statement.execute(query);
 
         } catch (SQLException throwables) {

@@ -7,7 +7,7 @@
 
 <AnchorPane prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mbrzozowski.controller.ChooseMonthController">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="100.0" spacing="10.0" stylesheets="@style.css" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%choose.month" />
             <ComboBox fx:id="comboBoxMonth" onAction="#comboBoxCheck_onAction" prefWidth="150.0" promptText="%name.month" />

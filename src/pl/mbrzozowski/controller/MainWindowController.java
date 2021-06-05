@@ -61,7 +61,7 @@ public class MainWindowController {
         scene.getStylesheets().add(getClass().getResource(PathToFXMLFile.STYLE_CSS).toExternalForm());
         stageScheduleEmployeeGenerator.setScene(scene);
         stageScheduleEmployeeGenerator.initModality(Modality.APPLICATION_MODAL);
-        stageScheduleEmployeeGenerator.initStyle(StageStyle.UNIFIED);
+        //stageScheduleEmployeeGenerator.initStyle(StageStyle.UNIFIED);
         stageScheduleEmployeeGenerator.show();
     }
 

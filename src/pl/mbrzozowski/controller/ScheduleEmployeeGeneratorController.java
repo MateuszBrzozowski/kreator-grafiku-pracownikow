@@ -42,7 +42,6 @@ public class ScheduleEmployeeGeneratorController {
         stageScheduleEmployeeGenerator = MainWindowController.getStageScheduleEmployeeGenerator();
         setCenter(PathToFXMLFile.CHOOSE_MONTH);
         borderPane.setPrefSize(BorderPane.USE_COMPUTED_SIZE,BorderPane.USE_COMPUTED_SIZE);
-
     }
 
     @FXML

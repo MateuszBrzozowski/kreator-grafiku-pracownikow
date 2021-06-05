@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mbrzozowski.controller.ScheduleEmployeeGeneratorController">
+<AnchorPane fx:id="anchorPane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.mbrzozowski.controller.ScheduleEmployeeGeneratorController">
    <children>
-      <BorderPane fx:id="borderPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+      <BorderPane fx:id="borderPane" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <bottom>
             <HBox alignment="CENTER_RIGHT" spacing="5.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="buttonNext" mnemonicParsing="false" onMouseClicked="#buttonNext_Clicekd" prefHeight="40.0" text="%next.generator">
+                  <Button fx:id="buttonNext" mnemonicParsing="false" onMouseClicked="#buttonNext_Clicekd" prefHeight="40.0" stylesheets="@style.css" text="Dalej">
                      <padding>
                         <Insets left="20.0" right="20.0" />
                      </padding>
@@ -20,7 +20,7 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="buttonCancel" mnemonicParsing="false" onMouseClicked="#buttonCancel_Clicked" prefHeight="40.0" text="%back.generator">
+                  <Button fx:id="buttonCancel" mnemonicParsing="false" onMouseClicked="#buttonCancel_Clicked" prefHeight="40.0" text="Anuluj">
                      <padding>
                         <Insets left="20.0" right="20.0" />
                      </padding>

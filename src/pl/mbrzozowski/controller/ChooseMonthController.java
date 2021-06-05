@@ -47,7 +47,6 @@ public class ChooseMonthController {
         comboBoxMonth.getItems().addAll(monthName);
         putToTablePlusTenYears(year);
         comboBoxYear.getItems().addAll(yearName);
-
     }
 
     private void putToTablePlusTenYears(int year) {
